@@ -8,6 +8,9 @@
     "build-storybook": "build-storybook",
     "prepublish": "rm -rf ./dist && npm run build"
   },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "repository": {
     "url": "git@github.com:yuhuinc/yuhui.git"
   },
