@@ -9,7 +9,7 @@
     "prepublish": "rm -rf ./dist && npm run build"
   },
   "repository": {
-    "url": "git@github.com:fiffty/nobar.git"
+    "url": "git@github.com:yuhuinc/yuhui.git"
   },
   "peerDependencies": {
     "react": "^16.12.0",
