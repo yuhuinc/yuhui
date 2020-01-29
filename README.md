@@ -14,14 +14,14 @@ Accessible React components
 1. Add a `.npmrc` file in the root directory of your project with the following content:
 
 ```
-@fiffty:registry=https://npm.pkg.github.com/
+@yuhuinc:registry=https://npm.pkg.github.com/
 ```
 
 2. Add the package
 
 ```bash
-$ npm install @fiffty/nobar
-$ yarn add @fiffty/nobar
+$ npm install @yuhuinc/yuhui
+$ yarn add @yuhui/yuhui
 ```
 
 ### Developing
