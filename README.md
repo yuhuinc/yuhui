@@ -29,3 +29,8 @@ $ yarn add @yuhui/yuhui
 ```bash
 $ yarn storybook
 ```
+
+## Resources
+
+- [A11Y Style Guide](https://a11y-style-guide.com/style-guide/)
+- [Reakit](https://reakit.io/)

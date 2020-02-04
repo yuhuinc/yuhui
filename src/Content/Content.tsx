@@ -74,7 +74,7 @@ export interface WithContentProps {
 export const withContent = <P extends object>(
   WrappedComponent: React.ComponentType<P>
 ) =>
-  forwardRef(({ style, contentKey, render, ...rest }: any, ref) => {
+  forwardRef(({ style, contentKey, render, children, ...rest }: any, ref) => {
     const { lang, contentNodes } = useContext(ContentContext);
     const { copy } = contentNodes[contentKey];
 
@@ -87,6 +87,7 @@ export const withContent = <P extends object>(
         {render
           ? render({ content: contentNodes[contentKey], lang })
           : copy[lang]}
+        {children}
       </WrappedComponent>
     );
   });
