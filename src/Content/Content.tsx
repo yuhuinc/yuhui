@@ -3,6 +3,7 @@ import React, { createContext, forwardRef, useContext, useState } from "react";
 export const ContentContext = createContext<ContentContext>({
   lang: "",
   setLang: () => {},
+  theme: {},
   contentNodes: {},
   addContentNodes: () => {}
 });
@@ -24,25 +25,32 @@ interface ContentNodes {
   [key: string]: ContentNode;
 }
 
+interface Content {
+  contentNodes: ContentNodes;
+  theme: any;
+}
+
 interface ContentContext {
   lang: string;
   setLang: (lang: string) => void;
   contentNodes: ContentNodes;
   addContentNodes: (nodes: ContentNodes) => void;
+  theme: any;
 }
 
 interface ContentProviderProps {
   children?: React.ReactNode;
   lang?: string;
-  contentNodes?: ContentNodes;
+  content: Content;
   [key: string]: any;
 }
 
 export const ContentProvider = ({
   children,
   lang: defaultLang,
-  contentNodes: defaultContentNodes
+  content
 }: ContentProviderProps) => {
+  const { contentNodes: defaultContentNodes, theme } = content;
   const [lang, setLang] = useState(defaultLang || "en");
   const [contentNodes, setContentNodes] = useState(
     defaultContentNodes || ({} as ContentNodes)
@@ -58,7 +66,8 @@ export const ContentProvider = ({
         lang,
         setLang,
         contentNodes,
-        addContentNodes
+        addContentNodes,
+        theme
       }}
     >
       {children}
@@ -75,13 +84,13 @@ export const withContent = <P extends object>(
   WrappedComponent: React.ComponentType<P>
 ) =>
   forwardRef(({ style, contentKey, render, children, ...rest }: any, ref) => {
-    const { lang, contentNodes } = useContext(ContentContext);
+    const { lang, contentNodes, theme } = useContext(ContentContext);
     const { copy } = contentNodes[contentKey];
-
     return (
       <WrappedComponent
         ref={ref}
         style={{ ...contentNodes[contentKey].style, ...style }}
+        theme={theme}
         {...rest}
       >
         {render

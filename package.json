@@ -6,7 +6,7 @@
     "build": "rm -rf dist/ && tsc",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "prepublish": "rm -rf ./dist && npm run build"
+    "prepublishOnly": "npm run build"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
@@ -20,7 +20,8 @@
   },
   "dependencies": {
     "ramda": "^0.26.1",
-    "reakit": "^1.0.0-beta.14"
+    "reakit": "^1.0.0-beta.14",
+    "styled-components": "^5.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.8.3",
@@ -32,6 +33,7 @@
     "@types/node": "^13.5.0",
     "@types/react": "^16.9.19",
     "@types/react-dom": "^16.9.5",
+    "@types/styled-components": "^4.4.2",
     "babel-loader": "^8.0.6",
     "babel-preset-react-app": "^9.1.0",
     "typescript": "^3.7.5"

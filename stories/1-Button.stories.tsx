@@ -1,6 +1,5 @@
 import React from "react";
-import { action } from "@storybook/addon-actions";
-import { Button, ContentProvider, useContent } from "../src";
+import { Button, ContentProvider, useContent, ButtonPrimary } from "../src";
 
 export default {
   title: "Button",
@@ -22,9 +21,23 @@ const contentNodes = {
   }
 };
 
-export const Text = () => {
+const theme = {
+  colors: {
+    primary: {
+      light: "#d0dbfd",
+      dark: "#230cc2"
+    }
+  }
+};
+
+const content = {
+  contentNodes,
+  theme
+};
+
+export const Primary_Buttons = () => {
   return (
-    <ContentProvider lang="fr" contentNodes={contentNodes}>
+    <ContentProvider lang="fr" content={content}>
       <Buttons />
     </ContentProvider>
   );
@@ -36,8 +49,8 @@ const Buttons = () => {
   return (
     <div>
       <p>Language code: {lang}</p>
-      <Button contentKey="demo.Button" onClick={() => setLang("en")} />
-      <Button
+      <ButtonPrimary contentKey="demo.Button" onClick={() => setLang("en")} />
+      <ButtonPrimary
         onClick={() => setLang("fr")}
         contentKey="demo.ButtonWithRender"
         render={({ content, lang }) => (
