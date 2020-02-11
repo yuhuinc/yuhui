@@ -24,9 +24,11 @@ interface RadioContext {
 
 const StyledCard = styled(Button)`
   box-shadow: ${styleValues.bowShadow};
+  border: none;
   border-radius: 16px;
   padding: 16px;
   margin: 8px;
+  cursor: pointer;
 `;
 
 const RadioContext = createContext<RadioContext>({

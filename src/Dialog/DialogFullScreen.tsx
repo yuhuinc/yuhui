@@ -21,7 +21,7 @@ const StyledDialog = styled(RKDialog)`
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #fff;
+  background-color: ${colors.PALE_GREY};
   padding: 160px 62px 62px;
   display: flex;
   justify-content: center;

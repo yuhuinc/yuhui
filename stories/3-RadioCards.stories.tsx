@@ -4,7 +4,7 @@ import { Formik, Form } from "formik";
 import { ContentProvider, RadioCards, RadioCard } from "../src";
 
 export default {
-  title: "Dialog"
+  title: "Input"
 };
 
 const contentNodes = {
@@ -30,7 +30,7 @@ const content = {
   theme
 };
 
-export const Fullscreen_Dialog = () => (
+export const Radio_Cards = () => (
   <ContentProvider lang="en" content={content}>
     <RadioInputs />
   </ContentProvider>
