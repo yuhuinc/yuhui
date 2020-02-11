@@ -2,12 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 import { colors } from "../shared/colors";
-import { withContent, WithContentProps } from "../Content/Content";
-
-interface ButtonProps extends WithContentProps {
-  disabled?: boolean;
-  [key: string]: any;
-}
+import { withContent } from "../Content/Content";
+import { ButtonProps } from "./Button";
 
 const StyledButton = styled.button`
   color: ${props =>

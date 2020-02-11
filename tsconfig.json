@@ -7,7 +7,7 @@
     "lib": ["es5", "es6", "es7", "es2017", "dom"],
     "moduleResolution": "node",
     "jsx": "react",
-    "strict": true,
+    "strict": false,
     "strictFunctionTypes": false,
     "declaration": true,
     "noFallthroughCasesInSwitch": true,

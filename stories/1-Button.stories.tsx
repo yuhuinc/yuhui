@@ -1,9 +1,8 @@
 import React from "react";
-import { Button, ContentProvider, useContent, ButtonPrimary } from "../src";
+import { ContentProvider, useContent, ButtonPrimary } from "../src";
 
 export default {
-  title: "Button",
-  component: Button
+  title: "Button"
 };
 
 const contentNodes = {
