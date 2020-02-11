@@ -8,7 +8,7 @@ import { Tabbable } from "reakit/Tabbable";
 import { MdClose } from "react-icons/md";
 
 import { useContent } from "../Content/Content";
-import { colors } from "../shared/colors";
+import { colors } from "../shared/constants";
 
 interface DialogProps {
   label: string;

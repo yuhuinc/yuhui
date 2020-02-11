@@ -42,3 +42,7 @@ export const colors = {
   LIGHT_BLUE_GREY: "#dcd9f5",
   BLUE_DENIM: "#015eb8"
 };
+
+export const styleValues = {
+  bowShadow: "0 2px 23px 0 rgba(0, 0, 0, 0.12)"
+};

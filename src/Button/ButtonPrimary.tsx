@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import { colors } from "../shared/colors";
+import { colors } from "../shared/constants";
 import { withContent } from "../Content/Content";
 import { ButtonProps } from "./Button";
 
