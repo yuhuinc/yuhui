@@ -3,7 +3,8 @@ import {
   ContentProvider,
   DialogFullScreen,
   useDialogState,
-  ButtonPrimary
+  ButtonPrimary,
+  P
 } from "../src";
 
 export default {
@@ -15,6 +16,12 @@ const contentNodes = {
     copy: {
       en: "Toggle Dialog",
       fr: "Toggle Dialog"
+    }
+  },
+  "demo.P": {
+    copy: {
+      en: "Hello",
+      fr: "Bounjour"
     }
   }
 };
@@ -45,7 +52,7 @@ const Dialogs = () => {
     <div>
       <ButtonPrimary contentKey="demo.Button" onClick={dialogState.toggle} />
       <DialogFullScreen label="Hello" {...dialogState}>
-        <p>Hello World</p>
+        <P contentKey="demo.P" />
       </DialogFullScreen>
     </div>
   );

@@ -22,10 +22,11 @@ const StyledDialog = styled(RKDialog)`
   right: 0;
   bottom: 0;
   background-color: ${colors.PALE_GREY};
-  padding: 160px 62px 62px;
+  padding: 62px;
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 999;
 `;
 
 const StyledCloseContainer = styled(Tabbable)`
