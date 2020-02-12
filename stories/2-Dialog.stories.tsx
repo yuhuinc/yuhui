@@ -52,7 +52,7 @@ const Dialogs = () => {
     <div>
       <ButtonPrimary contentKey="demo.Button" onClick={dialogState.toggle} />
       <DialogFullScreen label="Hello" {...dialogState}>
-        <P contentKey="demo.P" />
+        <P contentKey="demo.P" centered />
       </DialogFullScreen>
     </div>
   );

@@ -2,6 +2,7 @@ import React, { useCallback, createContext, useContext } from "react";
 import { Button } from "reakit/Button";
 import styled from "styled-components";
 
+import {useContent} from '../Content/Content'
 import { styleValues } from "../shared/constants";
 
 interface RadioCardsProps {
@@ -24,7 +25,8 @@ interface RadioContext {
 
 const StyledCard = styled(Button)`
   box-shadow: ${styleValues.bowShadow};
-  border: none;
+  background-color: ${props => props.selected ? props.theme.colors.primary.light: "#fff"};
+  border: ${props => props.selected ? `2px solid ${props.theme.colors.primary.dark}` : "none"};
   border-radius: 16px;
   padding: 16px;
   margin: 8px;
@@ -61,11 +63,13 @@ export const RadioCard = ({ value, children, ...rest }: RadioCardProps) => {
   const handleClick = useCallback(e => {
     e.preventDefault();
     setValue(value);
-  }, []);
+  }, [value]);
+  const {theme} = useContent();
+  const selected = value === selectedValue
 
   return (
-    <StyledCard {...rest} role="radio" onClick={handleClick}>
-      {children({ selected: value === selectedValue })}
+    <StyledCard selected={selected} theme={theme} {...rest} role="radio" onClick={handleClick}>
+      {children({ selected })}
     </StyledCard>
   );
 };

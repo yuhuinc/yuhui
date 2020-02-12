@@ -47,6 +47,10 @@ const StyledCloseText = styled.span`
   color: ${colors.GRAY};
 `;
 
+const StyledChildrenContainer = styled.div`
+  width: 100%;
+`
+
 const closeCopy = {
   en: "esc",
   fr: "fermer"
@@ -62,7 +66,7 @@ export const DialogFullScreen = ({
   const { lang, theme } = useContent();
   return (
     <StyledDialog aria-label={label} baseId={baseId} hide={hide} {...rest}>
-      <div>{children}</div>
+      <StyledChildrenContainer>{children}</StyledChildrenContainer>
       <StyledCloseContainer onClick={hide}>
         <MdClose
           size="24px"
