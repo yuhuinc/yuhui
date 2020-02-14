@@ -1,8 +1,8 @@
 import React from "react";
-import { ContentProvider, useContent, ButtonPrimary } from "../src";
+import { ContentProvider, useContent, ButtonPrimary } from "../../src";
 
 export default {
-  title: "Button"
+  title: "Components/Button"
 };
 
 const contentNodes = {
@@ -34,7 +34,7 @@ const content = {
   theme
 };
 
-export const Primary_Buttons = () => {
+export const PrimaryButtons = () => {
   return (
     <ContentProvider lang="fr" content={content}>
       <Buttons />

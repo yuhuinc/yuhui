@@ -5,10 +5,10 @@ import {
   useDialogState,
   ButtonPrimary,
   P
-} from "../src";
+} from "../../src";
 
 export default {
-  title: "Dialog"
+  title: "Components/Dialog"
 };
 
 const contentNodes = {
@@ -40,7 +40,7 @@ const content = {
   theme
 };
 
-export const Fullscreen_Dialog = () => (
+export const FullscreenDialog = () => (
   <ContentProvider lang="en" content={content}>
     <Dialogs />
   </ContentProvider>

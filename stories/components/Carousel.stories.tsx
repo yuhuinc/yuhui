@@ -1,8 +1,8 @@
 import React from "react";
-import { Carousel, useCarousel, ContentProvider } from "../src";
+import { Carousel, useCarousel, ContentProvider } from "../../src";
 
 export default {
-  title: "Carousel"
+  title: "Components/Carousel"
 };
 
 const contentNodes = {
@@ -35,11 +35,13 @@ const content = {
 };
 
 export const Carousels = () => {
-  const { pageIndex, goTo, back, forward } = useCarousel({ numOfPages: 3 });
+  const { pageIndex, goTo, back, forward, ...rest } = useCarousel({
+    numOfPages: 3
+  });
   return (
     <ContentProvider lang="fr" content={content}>
       <h1>Carousel</h1>
-      <Carousel pageIndex={pageIndex}>
+      <Carousel pageIndex={pageIndex} {...rest}>
         <div style={{ width: "100%" }}>
           <p>Page 1</p>
         </div>

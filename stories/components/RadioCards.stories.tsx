@@ -1,10 +1,10 @@
 import React from "react";
 import { Formik, Form } from "formik";
 
-import { ContentProvider, RadioCards, RadioCard } from "../src";
+import { ContentProvider, RadioCards, RadioCard } from "../../src";
 
 export default {
-  title: "Input"
+  title: "Components/Input"
 };
 
 const contentNodes = {
@@ -52,7 +52,7 @@ const RadioInputs = () => {
             setFieldValue={setFieldValue}
             value={values.choice}
           >
-            <RadioCard value="hello" setFieldValue={setFieldValue}>
+            <RadioCard value="hello">
               {({ selected }) => (
                 <div>
                   <p>Hello</p>
@@ -60,7 +60,7 @@ const RadioInputs = () => {
                 </div>
               )}
             </RadioCard>
-            <RadioCard value="world" setFieldValue={setFieldValue}>
+            <RadioCard value="world">
               {({ selected }) => (
                 <div>
                   <p>World</p>
@@ -74,7 +74,7 @@ const RadioInputs = () => {
             setFieldValue={setFieldValue}
             value={values.number}
           >
-            <RadioCard value="1" setFieldValue={setFieldValue}>
+            <RadioCard value="1">
               {({ selected }) => (
                 <div>
                   <p>1</p>
@@ -82,7 +82,7 @@ const RadioInputs = () => {
                 </div>
               )}
             </RadioCard>
-            <RadioCard value="2" setFieldValue={setFieldValue}>
+            <RadioCard value="2">
               {({ selected }) => (
                 <div>
                   <p>2</p>

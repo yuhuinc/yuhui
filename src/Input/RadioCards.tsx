@@ -2,7 +2,7 @@ import React, { useCallback, createContext, useContext } from "react";
 import { Button } from "reakit/Button";
 import styled from "styled-components";
 
-import {useContent} from '../Content/Content'
+import { useContent } from "../Content/Content";
 import { styleValues } from "../shared/constants";
 
 interface RadioCardsProps {
@@ -25,8 +25,10 @@ interface RadioContext {
 
 const StyledCard = styled(Button)`
   box-shadow: ${styleValues.bowShadow};
-  background-color: ${props => props.selected ? props.theme.colors.primary.light: "#fff"};
-  border: ${props => props.selected ? `2px solid ${props.theme.colors.primary.dark}` : "none"};
+  background-color: ${props =>
+    props.selected ? props.theme.colors.primary.light : "#fff"};
+  border: ${props =>
+    props.selected ? `2px solid ${props.theme.colors.primary.dark}` : "none"};
   border-radius: 16px;
   padding: 16px;
   margin: 8px;
@@ -60,15 +62,24 @@ export const RadioCards = ({
 
 export const RadioCard = ({ value, children, ...rest }: RadioCardProps) => {
   const { value: selectedValue, setValue } = useContext(RadioContext);
-  const handleClick = useCallback(e => {
-    e.preventDefault();
-    setValue(value);
-  }, [value]);
-  const {theme} = useContent();
-  const selected = value === selectedValue
+  const handleClick = useCallback(
+    e => {
+      e.preventDefault();
+      setValue(value);
+    },
+    [value]
+  );
+  const { theme } = useContent();
+  const selected = value === selectedValue;
 
   return (
-    <StyledCard selected={selected} theme={theme} {...rest} role="radio" onClick={handleClick}>
+    <StyledCard
+      selected={selected}
+      theme={theme}
+      {...rest}
+      role="radio"
+      onClick={handleClick}
+    >
       {children({ selected })}
     </StyledCard>
   );
