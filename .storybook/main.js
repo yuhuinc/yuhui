@@ -3,6 +3,7 @@ const path = require("path");
 module.exports = {
   stories: ["../stories/**/*.stories.tsx"],
   addons: [
+    "@storybook/addon-notes/register",
     {
       name: "@storybook/addon-storysource",
       options: {

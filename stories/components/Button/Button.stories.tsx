@@ -1,6 +1,6 @@
 import React from "react";
-import PropTypes from "prop-types";
 
+import markdown from "./Button.md";
 import { ContentProvider, useContent, ButtonPrimary } from "../../../src";
 
 export default {
@@ -36,9 +36,6 @@ const content = {
   theme
 };
 
-/**
- * Use `Badge` to highlight key info with a predefined status.
- */
 export const PrimaryButton = () => {
   return (
     <ContentProvider lang="fr" content={content}>
@@ -46,8 +43,10 @@ export const PrimaryButton = () => {
     </ContentProvider>
   );
 };
-PrimaryButton.propTypes = {
-  test: PropTypes.string
+PrimaryButton.story = {
+  parameters: {
+    notes: { markdown }
+  }
 };
 
 const Buttons = () => {

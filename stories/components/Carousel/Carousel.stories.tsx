@@ -1,5 +1,7 @@
 import React from "react";
-import { Carousel, useCarousel, ContentProvider } from "../../src";
+
+import markdown from "./Carousel.md";
+import { Carousel, useCarousel, ContentProvider } from "../../../src";
 
 export default {
   title: "Components/Carousel"
@@ -58,4 +60,10 @@ export const Carousels = () => {
       </div>
     </ContentProvider>
   );
+};
+
+Carousels.story = {
+  parameters: {
+    notes: { markdown }
+  }
 };
