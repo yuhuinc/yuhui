@@ -5,7 +5,7 @@
   "scripts": {
     "build": "rm -rf dist/ && tsc",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
+    "build-storybook": "build-storybook --output-dir docs",
     "prepublishOnly": "npm run build"
   },
   "publishConfig": {
