@@ -37,6 +37,18 @@ const contentNodes = {
       en: "Hi",
       fr: "Bonjour"
     }
+  },
+  "demo.H1ThirdPage": {
+    copy: {
+      en: "Third Page",
+      fr: "Third Page"
+    }
+  },
+  "demo.H1FourthPage": {
+    copy: {
+      en: "Last Page",
+      fr: "Last Page"
+    }
   }
 };
 
@@ -117,7 +129,12 @@ const Page1 = ({ forward, setName, ...rest }) => {
       {() => (
         <StyledForm {...rest}>
           <H1 centered contentKey="demo.H1FirstPage" />
-          <StyledField type="text" name="name" placeholder="Your name" />
+          <StyledField
+            required
+            type="text"
+            name="name"
+            placeholder="Your name"
+          />
           <div>
             <ButtonPrimary contentKey="demo.ForwardButton" />
           </div>
@@ -179,14 +196,12 @@ const Page3 = ({ forward, back, interested, ...rest }) => {
     <Formik
       initialValues={{}}
       onSubmit={values => {
-        console.log(values);
-        console.log("SHOULD MOVE FOREWARD");
         forward();
       }}
     >
       {() => (
         <StyledForm hide={!interested} {...rest}>
-          <p>Page 3</p>
+          <H1 centered contentKey="demo.H1ThirdPage" />
           <div>
             <ButtonPrimary
               onClick={handleClickBack}
@@ -214,7 +229,7 @@ const Page4 = ({ goTo, interested, ...rest }) => {
     >
       {() => (
         <StyledForm {...rest}>
-          <p>Page 4</p>
+          <H1 centered contentKey="demo.H1FourthPage" />
           <ButtonPrimary contentKey="demo.BackButton" />
         </StyledForm>
       )}

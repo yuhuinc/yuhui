@@ -1,5 +1,7 @@
 import React from "react";
-import { ContentProvider, useContent, ButtonPrimary } from "../../src";
+import PropTypes from "prop-types";
+
+import { ContentProvider, useContent, ButtonPrimary } from "../../../src";
 
 export default {
   title: "Components/Button"
@@ -34,12 +36,18 @@ const content = {
   theme
 };
 
-export const PrimaryButtons = () => {
+/**
+ * Use `Badge` to highlight key info with a predefined status.
+ */
+export const PrimaryButton = () => {
   return (
     <ContentProvider lang="fr" content={content}>
       <Buttons />
     </ContentProvider>
   );
+};
+PrimaryButton.propTypes = {
+  test: PropTypes.string
 };
 
 const Buttons = () => {
