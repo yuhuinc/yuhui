@@ -76,17 +76,30 @@ export const ContentProvider = ({
   );
 };
 
+export function interpolate(string, params) {
+  return string.split(/\${|}/gm)
+        .reduce((prev, curr, i) => {
+      if (i % 2 === 0) {
+        return prev + curr;
+      } else {
+        return prev + params[curr];
+      }
+    }, '');
+}
+
 export interface WithContentProps {
   contentKey: string;
+  contentParams?: any;
   style?: any;
 }
 
 export const withContent = <P extends object>(
   WrappedComponent: React.ComponentType<P>
 ) =>
-  forwardRef(({ style, contentKey, render, children, ...rest }: any, ref) => {
+  forwardRef(({ style, contentKey, contentParams={}, render, children, ...rest }: any, ref) => {
     const { lang, contentNodes, theme } = useContext(ContentContext);
     const { copy } = contentNodes[contentKey];
+    const copyToRender = interpolate(copy[lang], contentParams);
     return (
       <WrappedComponent
         ref={ref}
@@ -95,8 +108,8 @@ export const withContent = <P extends object>(
         {...rest}
       >
         {render
-          ? render({ content: contentNodes[contentKey], lang })
-          : copy[lang]}
+          ? render(copyToRender)
+          : copyToRender}
         {children}
       </WrappedComponent>
     );

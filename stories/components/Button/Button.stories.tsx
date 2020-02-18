@@ -59,9 +59,9 @@ const Buttons = () => {
       <ButtonPrimary
         onClick={() => setLang("fr")}
         contentKey="demo.ButtonWithRender"
-        render={({ content, lang }) => (
+        render={copy => (
           <span>
-            <b>{content.copy[lang]}</b> with render()
+            <b>{copy}</b> with render()
           </span>
         )}
       />

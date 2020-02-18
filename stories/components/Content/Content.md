@@ -49,13 +49,13 @@ interface ContentNode {
 const content = {
   contentNodes: {
       {
-  "demo.Button": {
-    copy: {
-      en: "Switch to English",
-      fr: "Passer à l'anglais"
+      "demo.Button": {
+        copy: {
+          en: "Switch to English",
+          fr: "Passer à l'anglais"
+        }
+      }
     }
-  }
-};
   },
   theme: {
     colors: {
@@ -80,25 +80,45 @@ A higher-order component which adds the following props.
 
 ### Props
 
-| name       | type            | default | description                                                                  |
-| ---------- | --------------- | ------- | ---------------------------------------------------------------------------- |
-| contentKey | string          |         | **Required.** Name of the corresponding key in `contentNodes` from `Content` |
-| style      | Style           |         | Style object. Overwrites styles for the root element.                        |
-| render     | () => ReactNode |         | A render prop that exposes `content` and `lang`.                             |
-| children   | ReactNode       |         | An escape hatch for rendering content that is not part of `Content`.         |
+| name          | type                  | default | description                                                                  |
+| ------------- | --------------------- | ------- | ---------------------------------------------------------------------------- |
+| contentKey    | string                |         | **Required.** Name of the corresponding key in `contentNodes` from `Content` |
+| contentParams | object                |         | Object with key value pairs to be interpolated into the copy string.         |
+| style         | Style                 |         | Style object. Overwrites styles for the root element.                        |
+| render        | (string) => ReactNode |         | A render prop that exposes the interpolated copy string                      |
+| children      | ReactNode             |         | An escape hatch for rendering content that is not part of `Content`.         |
 
 ### Examples
 
 ```javascript
 const H1 = withContent(({children, ...rest}) => <h1 {...rest}>{children}</h1>);
 
-
 // Below will render copy from content.contentNodes['demo.Button']
 <H1 contentKey="demo.Button" />
 
 // You can have more control with the render prop
 <H1
-    render={({content, lang}) => `${content[lang]} !!`}
+  render={copy => `${copy} !!`}
+/>
+
+// If we have copy with variables
+const content = {
+  contentNodes: {
+      {
+      "demo.P": {
+        copy: {
+          en: "Hello ${name}",
+          fr: "Bounjour ${name}"
+        }
+      }
+    }
+  },
+  theme: { /* */ }
+};
+
+<P
+  contentKey="demo.P"
+  contentParams={{name: nameFromSomeState}}
 />
 ```
 
