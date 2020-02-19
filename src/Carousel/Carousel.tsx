@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useCallback } from "react";
 import styled from "styled-components";
 
 const StyledContainer = styled.div`
@@ -16,22 +16,21 @@ const StyledInner = styled.div`
 
 export const useCarousel = ({ numOfPages }) => {
   const [pageIndex, setPageIndex] = useState(0);
-  const [pageWidth, setPageWidth] = useState(0);
   const goTo = index => setPageIndex(index);
   const back = () => pageIndex > 0 && setPageIndex(pageIndex - 1);
   const forward = () =>
     pageIndex < numOfPages - 1 && setPageIndex(pageIndex + 1);
-  return { pageIndex, goTo, back, forward, pageWidth, setPageWidth };
+  return { pageIndex, goTo, back, forward };
 };
 
-export const Carousel = ({ pageIndex, pageWidth, setPageWidth, children }) => {
-  const container = useRef(null);
-  useEffect(() => {
-    setPageWidth(container.current?.clientWidth);
-  }, [container]);
+export const Carousel = ({ pageIndex, children, ...rest }) => {
+  const [pageWidth, setPageWidth] = useState(0);
+  const handleClientWidth = useCallback(elem => {
+    setPageWidth(elem.clientWidth)
+  }, [setPageWidth])
 
   return (
-    <StyledContainer ref={container}>
+    <StyledContainer ref={handleClientWidth} {...rest}>
       <StyledInner
         count={children.length}
         pageIndex={pageIndex}

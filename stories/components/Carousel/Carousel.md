@@ -24,15 +24,13 @@ A React hook that powers the `<Carousel />` component. Takes in an `option` para
 
 The returned value must be spreaded into `<Carousel />` as props.
 
-| name         | type            | default | description                                                                                                                           |
-| ------------ | --------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| pageIndex    | integer         |         | Current page index. Must be passed into `<Carousel />`                                                                                |
-| goTo         | integer => void |         | A function that sets `pageIndex` to the given index value.                                                                            |
-| back         | () => void      |         | A function that decrements `pageIndex` by 1.                                                                                          |
-| forward      | () => void      |         | A function that increments `pageIndex` by 1.                                                                                          |
-| children     | ReactNode       |         |                                                                                                                                       |
-| pageWidth    | integer         |         | Width of a single page. Gets calculated automatically from the `<Carousel />`'s parent element. Use only to pass into `<Carousel />`. |
-| setPageWidth | integer => void |         | A function that sets `pageWidth`. Use only to pass into `<Carousel />`.                                                               |
+| name      | type            | default | description                                                |
+| --------- | --------------- | ------- | ---------------------------------------------------------- |
+| pageIndex | integer         |         | Current page index. Must be passed into `<Carousel />`     |
+| goTo      | integer => void |         | A function that sets `pageIndex` to the given index value. |
+| back      | () => void      |         | A function that decrements `pageIndex` by 1.               |
+| forward   | () => void      |         | A function that increments `pageIndex` by 1.               |
+| children  | ReactNode       |         |                                                            |
 
 ### Example
 
@@ -55,9 +53,7 @@ const carousel = useCarousel({ numOfPages: 2 })
 
 ### Props
 
-| name         | type            | default | description        |
-| ------------ | --------------- | ------- | ------------------ |
-| children     | ReactNode       |         |                    |
-| pageIndex    | integer         |         | From `useCarousel` |
-| pageWidth    | integer         |         | From `useCarousel` |
-| setPageWidth | integer => void |         | From `useCarousel` |
+| name      | type      | default | description        |
+| --------- | --------- | ------- | ------------------ |
+| children  | ReactNode |         |                    |
+| pageIndex | integer   |         | From `useCarousel` |

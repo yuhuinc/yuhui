@@ -78,4 +78,4 @@ export const DialogFullScreen = ({
   );
 };
 
-export const useDialogState = rkUseDialogState;
+export const useDialog = rkUseDialogState;

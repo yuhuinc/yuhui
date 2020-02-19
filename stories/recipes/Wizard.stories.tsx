@@ -168,7 +168,7 @@ const Page2 = ({ goTo, back, name, interested, setInterested, ...rest }) => {
           <H1
             centered
             contentKey="demo.H1SecondPage"
-            render={({ content, lang }) => `${content.copy[lang]}, ${name}`}
+            render={copy => `${copy}, ${name}`}
           />
           <label>
             <StyledField type="checkbox" name="interested" />

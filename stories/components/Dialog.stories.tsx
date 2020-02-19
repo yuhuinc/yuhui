@@ -2,7 +2,7 @@ import React from "react";
 import {
   ContentProvider,
   DialogFullScreen,
-  useDialogState,
+  useDialog,
   ButtonPrimary,
   P
 } from "../../src";
@@ -47,11 +47,11 @@ export const FullscreenDialog = () => (
 );
 
 const Dialogs = () => {
-  const dialogState = useDialogState();
+  const dialog = useDialog();
   return (
     <div>
-      <ButtonPrimary contentKey="demo.Button" onClick={dialogState.toggle} />
-      <DialogFullScreen label="Hello" {...dialogState}>
+      <ButtonPrimary contentKey="demo.Button" onClick={dialog.toggle} />
+      <DialogFullScreen label="Hello" {...dialog}>
         <P contentKey="demo.P" centered />
       </DialogFullScreen>
     </div>
