@@ -1,6 +1,6 @@
 {
   "name": "@yuhuinc/yuhui",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "main": "dist/index.js",
   "scripts": {
     "build": "rm -rf dist/ && tsc",
@@ -16,8 +16,8 @@
     "url": "git@github.com:yuhuinc/yuhui.git"
   },
   "peerDependencies": {
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
   },
   "dependencies": {
     "ramda": "^0.26.1",

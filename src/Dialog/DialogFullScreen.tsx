@@ -60,13 +60,14 @@ export const DialogFullScreen = ({
   label,
   children,
   baseId,
+  visible,
   hide,
   ...rest
 }: DialogProps) => {
   const { lang, theme } = useContent();
   return (
-    <StyledDialog aria-label={label} baseId={baseId} hide={hide} {...rest}>
-      <StyledChildrenContainer>{children}</StyledChildrenContainer>
+    <StyledDialog aria-label={label} baseId={baseId} visible={visible} hide={hide} {...rest}>
+      {visible && <StyledChildrenContainer>{children}</StyledChildrenContainer>}
       <StyledCloseContainer onClick={hide}>
         <MdClose
           size="24px"

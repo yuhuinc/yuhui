@@ -25,9 +25,14 @@ export const useCarousel = ({ numOfPages }) => {
 
 export const Carousel = ({ pageIndex, children, ...rest }) => {
   const [pageWidth, setPageWidth] = useState(0);
-  const handleClientWidth = useCallback(elem => {
-    setPageWidth(elem.clientWidth)
-  }, [setPageWidth])
+  const handleClientWidth = useCallback(
+    elem => {
+      if (elem && elem.clientWidth) {
+        setPageWidth(elem.clientWidth);
+      }
+    },
+    [setPageWidth]
+  );
 
   return (
     <StyledContainer ref={handleClientWidth} {...rest}>
