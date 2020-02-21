@@ -157,7 +157,6 @@ const Page2 = ({ back, name, ...rest }) => {
               onClick={handleClickBack}
               contentKey="demo.BackButton"
             />
-            <ButtonPrimary contentKey="demo.ForwardButton" />
           </div>
         </StyledForm>
       )}

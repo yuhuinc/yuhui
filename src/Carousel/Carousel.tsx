@@ -14,6 +14,14 @@ const StyledInner = styled.div`
   transition: 0.2s all;
 `;
 
+const getClientWidth = (elem, cb) => {
+  if (elem.clientWidth > 0) {
+    cb()
+  } else {
+    window.requestAnimationFrame(() => getClientWidth(elem, cb))
+  }
+}
+
 export const useCarousel = ({ numOfPages }) => {
   const [pageIndex, setPageIndex] = useState(0);
   const goTo = index => setPageIndex(index);
@@ -28,7 +36,9 @@ export const Carousel = ({ pageIndex, children, ...rest }) => {
   const handleClientWidth = useCallback(
     elem => {
       if (elem && elem.clientWidth) {
-        setPageWidth(elem.clientWidth);
+        getClientWidth(elem, () => {
+          setPageWidth(elem.clientWidth)
+        })
       }
     },
     [setPageWidth]
