@@ -27,8 +27,10 @@ const StyledCard = styled(Button)`
   box-shadow: ${styleValues.bowShadow};
   background-color: ${props =>
     props.selected ? props.theme.colors.primary.light : "#fff"};
-  border: ${props =>
-    props.selected ? `2px solid ${props.theme.colors.primary.dark}` : "none"};
+  border-width: 2px;
+  border-style: solid;
+  border-color: ${props =>
+    props.selected ? props.theme.colors.primary.dark : "transparent"};
   border-radius: 16px;
   padding: 16px;
   margin: 8px;

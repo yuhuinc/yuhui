@@ -7,9 +7,11 @@ import { ButtonProps } from "./Button";
 
 const StyledButton = styled.button`
   color: ${props =>
-    props.disabled ? colors.BATTLESHIP_GREY : props.theme.colors.primary.dark};
+    props.disabled
+      ? colors.BATTLESHIP_GREY
+      : props.themeObj.colors.primary.dark};
   background-color: ${props =>
-    props.disabled ? colors.PALE_GREY : props.theme.colors.primary.light};
+    props.disabled ? colors.PALE_GREY : props.themeObj.colors.primary.light};
   line-height: 36px;
   height: 36px;
   font-size: 14px;
@@ -24,7 +26,7 @@ const StyledButton = styled.button`
 export const ButtonPrimary = withContent(
   ({ children, theme, ...rest }: ButtonProps) => {
     return (
-      <StyledButton {...rest} theme={theme}>
+      <StyledButton {...rest} themeObj={theme}>
         {children}
       </StyledButton>
     );

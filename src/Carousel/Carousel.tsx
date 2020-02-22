@@ -35,7 +35,7 @@ export const Carousel = ({ pageIndex, children, ...rest }) => {
   const [pageWidth, setPageWidth] = useState(0);
   const handleClientWidth = useCallback(
     elem => {
-      if (elem && elem.clientWidth) {
+      if (elem) {
         getClientWidth(elem, () => {
           setPageWidth(elem.clientWidth)
         })

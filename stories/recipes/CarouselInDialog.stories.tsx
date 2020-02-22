@@ -63,29 +63,29 @@ const content = {
 };
 
 export const CarouselInDialog = () => {
-  const { pageIndex, goTo, back, forward, ...rest } = useCarousel({
-    numOfPages: 2
-  });
   const dialog = useDialog();
-  const [name, setName] = useState("");
-  const [interested, setInterested] = useState(false);
 
   return (
     <ContentProvider lang="en" content={content}>
       <ButtonPrimary contentKey="demo.ToggleButton" onClick={dialog.toggle} />
       <DialogFullScreen label="Hello" {...dialog}>
-        <Carousel pageIndex={pageIndex} {...rest}>
-          <Page1 forward={forward} setName={setName} />
-          <Page2
-            back={back}
-            goTo={goTo}
-            name={name}
-            interested={interested}
-            setInterested={setInterested}
-          />
-        </Carousel>
+        <CarouselDemo />
       </DialogFullScreen>
     </ContentProvider>
+  );
+};
+
+const CarouselDemo = () => {
+  const { pageIndex, goTo, back, forward, ...rest } = useCarousel({
+    numOfPages: 2
+  });
+  const [name, setName] = useState("");
+
+  return (
+    <Carousel pageIndex={pageIndex} {...rest}>
+      <Page1 forward={forward} setName={setName} />
+      <Page2 back={back} goTo={goTo} name={name} />
+    </Carousel>
   );
 };
 

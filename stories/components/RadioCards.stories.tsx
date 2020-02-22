@@ -55,16 +55,14 @@ const RadioInputs = () => {
             <RadioCard value="hello">
               {({ selected }) => (
                 <div>
-                  <p>Hello</p>
-                  {selected && "*"}
+                  <p>Hello {selected && "*"}</p>
                 </div>
               )}
             </RadioCard>
             <RadioCard value="world">
               {({ selected }) => (
                 <div>
-                  <p>World</p>
-                  {selected && "*"}
+                  <p>World {selected && "*"}</p>
                 </div>
               )}
             </RadioCard>
@@ -77,16 +75,14 @@ const RadioInputs = () => {
             <RadioCard value="1">
               {({ selected }) => (
                 <div>
-                  <p>1</p>
-                  {selected && "*"}
+                  <p>1 {selected && "*"}</p>
                 </div>
               )}
             </RadioCard>
             <RadioCard value="2">
               {({ selected }) => (
                 <div>
-                  <p>2</p>
-                  {selected && "*"}
+                  <p>2 {selected && "*"}</p>
                 </div>
               )}
             </RadioCard>
