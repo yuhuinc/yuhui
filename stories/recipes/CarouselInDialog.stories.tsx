@@ -82,10 +82,13 @@ const CarouselDemo = () => {
   const [name, setName] = useState("");
 
   return (
-    <Carousel pageIndex={pageIndex} {...rest}>
-      <Page1 forward={forward} setName={setName} />
-      <Page2 back={back} goTo={goTo} name={name} />
-    </Carousel>
+    <Carousel
+      pageIndex={pageIndex}
+      pages={[
+        <Page1 forward={forward} setName={setName} />,
+        <Page2 back={back} goTo={goTo} name={name} />
+      ]}
+    />
   );
 };
 

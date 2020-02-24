@@ -43,17 +43,20 @@ export const Carousels = () => {
   return (
     <ContentProvider lang="fr" content={content}>
       <h1>Carousel</h1>
-      <Carousel pageIndex={pageIndex} {...rest}>
-        <div style={{ width: "100%" }}>
-          <p>Page 1</p>
-        </div>
-        <div style={{ width: "100%" }}>
-          <p>Page 2</p>
-        </div>
-        <div style={{ width: "100%" }}>
-          <p>Page 3</p>
-        </div>
-      </Carousel>
+      <Carousel
+        pageIndex={pageIndex}
+        pages={[
+          <div style={{ width: "100%" }}>
+            <p>Page 1</p>
+          </div>,
+          <div style={{ width: "100%" }}>
+            <p>Page 2</p>
+          </div>,
+          <div style={{ width: "100%" }}>
+            <p>Page 3</p>
+          </div>
+        ]}
+      />
       <div>
         <button onClick={back}>Back</button>
         <button onClick={forward}>Forward</button>

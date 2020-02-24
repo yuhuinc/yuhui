@@ -8,10 +8,10 @@ import { ButtonProps } from "./Button";
 const StyledButton = styled.button`
   color: ${props =>
     props.disabled
-      ? colors.DISABLED_GRAY
+      ? colors.BATTLESHIP_GREY
       : props.themeObj.colors.primary.dark};
   background-color: ${props =>
-    props.disabled ? colors.PALE_GREY : props.themeObj.colors.primary.light};
+    props.disabled ? colors.DISABLED_GRAY : props.themeObj.colors.primary.light};
   line-height: 36px;
   height: 36px;
   font-size: 14px;

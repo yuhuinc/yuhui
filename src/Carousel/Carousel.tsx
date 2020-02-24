@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, ReactNode } from "react";
 import styled from "styled-components";
 
-import {useWindowWidth} from '../shared/useWindowWidth'
+import { useWindowWidth } from "../shared/useWindowWidth";
 
 const StyledContainer = styled.div`
   width: 100%;
@@ -18,11 +18,11 @@ const StyledInner = styled.div`
 
 const getClientWidth = (ref, cb) => {
   if (ref.current && ref.current.clientWidth > 0) {
-    cb(ref.current.clientWidth)
+    cb(ref.current.clientWidth);
   } else {
-    window.requestAnimationFrame(() => getClientWidth(ref, cb))
+    window.requestAnimationFrame(() => getClientWidth(ref, cb));
   }
-}
+};
 
 export const useCarousel = ({ numOfPages }) => {
   const [pageIndex, setPageIndex] = useState(0);
@@ -33,26 +33,55 @@ export const useCarousel = ({ numOfPages }) => {
   return { pageIndex, goTo, back, forward };
 };
 
-export const Carousel = ({ pageIndex, children, ...rest }) => {
+interface CarouselProps {
+  pageIndex: number;
+  pages: ReactNode[];
+  [key: string]: any;
+}
+
+export const Carousel = ({ pageIndex, pages, ...rest }: CarouselProps) => {
   const [pageWidth, setPageWidth] = useState(0);
   const windowWidth = useWindowWidth();
   const container = useRef();
 
   useEffect(() => {
-    getClientWidth(container, (clientWidth) => {
-      setPageWidth(clientWidth)
-    })
-  }, [windowWidth])
+    getClientWidth(container, clientWidth => {
+      setPageWidth(clientWidth);
+    });
+  }, [windowWidth]);
 
   return (
     <StyledContainer ref={container} {...rest}>
       <StyledInner
-        count={children.length}
+        count={pages.length}
         pageIndex={pageIndex}
         pageWidth={pageWidth}
       >
-        {children}
+        {pages.map((page, i) => (
+          <CarouselPage shouldRender={pageIndex === i}>{page}</CarouselPage>
+        ))}
       </StyledInner>
     </StyledContainer>
+  );
+};
+
+const StyledPageContainer = styled.div`
+  width: 100%;
+  visibility: ${props => (props.shouldRender ? "visible" : "hidden")};
+`;
+
+const StyledPageInner = styled.div`
+  width: 100%;
+  display: ${props => (props.shouldRender ? "flex" : "none")};
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const CarouselPage = ({ shouldRender, children }) => {
+  return (
+    <StyledPageContainer shouldRender={shouldRender}>
+      <StyledPageInner shouldRender={shouldRender}>{children}</StyledPageInner>
+    </StyledPageContainer>
   );
 };
