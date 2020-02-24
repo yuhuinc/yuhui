@@ -33,7 +33,10 @@ const StyledCard = styled(Button)`
     props.selected ? props.theme.colors.primary.dark : "transparent"};
   border-radius: 16px;
   padding: 16px;
-  margin: 8px;
+  margin-top: 8px;
+  margin-left: 8px;
+  margin-right: 8px;
+  margin-bottom: 32px;
   cursor: pointer;
 `;
 

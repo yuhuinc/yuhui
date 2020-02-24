@@ -11,7 +11,7 @@ export interface ButtonProps extends WithContentProps {
 export type Button = React.ComponentType<ButtonProps>;
 
 export const Button: Button = withContent(
-  ({ children, ...rest }: ButtonProps) => {
+  ({ children, ...rest }) => {
     return <RKButton {...rest}>{children}</RKButton>;
   }
 );
