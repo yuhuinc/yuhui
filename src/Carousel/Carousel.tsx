@@ -1,5 +1,7 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect, useRef } from "react";
 import styled from "styled-components";
+
+import {useWindowWidth} from '../shared/useWindowWidth'
 
 const StyledContainer = styled.div`
   width: 100%;
@@ -14,11 +16,11 @@ const StyledInner = styled.div`
   transition: 0.2s all;
 `;
 
-const getClientWidth = (elem, cb) => {
-  if (elem.clientWidth > 0) {
-    cb()
+const getClientWidth = (ref, cb) => {
+  if (ref.current && ref.current.clientWidth > 0) {
+    cb(ref.current.clientWidth)
   } else {
-    window.requestAnimationFrame(() => getClientWidth(elem, cb))
+    window.requestAnimationFrame(() => getClientWidth(ref, cb))
   }
 }
 
@@ -33,19 +35,17 @@ export const useCarousel = ({ numOfPages }) => {
 
 export const Carousel = ({ pageIndex, children, ...rest }) => {
   const [pageWidth, setPageWidth] = useState(0);
-  const handleClientWidth = useCallback(
-    elem => {
-      if (elem) {
-        getClientWidth(elem, () => {
-          setPageWidth(elem.clientWidth)
-        })
-      }
-    },
-    [setPageWidth]
-  );
+  const windowWidth = useWindowWidth();
+  const container = useRef();
+
+  useEffect(() => {
+    getClientWidth(container, (clientWidth) => {
+      setPageWidth(clientWidth)
+    })
+  }, [windowWidth])
 
   return (
-    <StyledContainer ref={handleClientWidth} {...rest}>
+    <StyledContainer ref={container} {...rest}>
       <StyledInner
         count={children.length}
         pageIndex={pageIndex}

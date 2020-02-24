@@ -3,7 +3,7 @@ export const colors = {
   YELLOW: "#ffe400",
   GRAY: "#A4A4A4",
   OFF_WHITE: "#e0e0e0",
-  DISABLED_GRAY: "#bdbdbd",
+  DISABLED_GRAY: "#d5d5d5",
   LIGHT_GRAY: "#f1f1f1",
   ICON_GRAY: "#6F6F6F",
   MENU_ITEM_GRAY: "#656565",

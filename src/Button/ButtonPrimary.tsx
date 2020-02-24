@@ -8,7 +8,7 @@ import { ButtonProps } from "./Button";
 const StyledButton = styled.button`
   color: ${props =>
     props.disabled
-      ? colors.BATTLESHIP_GREY
+      ? colors.DISABLED_GRAY
       : props.themeObj.colors.primary.dark};
   background-color: ${props =>
     props.disabled ? colors.PALE_GREY : props.themeObj.colors.primary.light};
