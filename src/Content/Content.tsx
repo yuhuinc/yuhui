@@ -1,5 +1,5 @@
 import React, { createContext, forwardRef, useContext, useState } from "react";
-import styled, {css} from 'styled-components'
+import styled, { css } from "styled-components";
 
 export const ContentContext = createContext<ContentContext>({
   lang: "",
@@ -77,14 +77,13 @@ export const ContentProvider = ({
 };
 
 export function interpolate(string, params) {
-  return string.split(/\${|}/gm)
-        .reduce((prev, curr, i) => {
-      if (i % 2 === 0) {
-        return prev + curr;
-      } else {
-        return prev + params[curr];
-      }
-    }, '');
+  return string.split(/\${|}/gm).reduce((prev, curr, i) => {
+    if (i % 2 === 0) {
+      return prev + curr;
+    } else {
+      return prev + params[curr];
+    }
+  }, "");
 }
 
 export interface WithContentProps {
@@ -96,32 +95,39 @@ export interface WithContentProps {
 export const withContent = <P extends object>(
   WrappedComponent: React.ComponentType<P>
 ) =>
-  forwardRef(({ style, contentKey, contentParams={}, render, children, ...rest }: any, ref) => {
-    const { lang, contentNodes, theme } = useContext(ContentContext);
-    const { copy } = contentNodes[contentKey];
-    const copyToRender = interpolate(copy[lang], contentParams);
-    return (
-      <WrappedComponent
-        ref={ref}
-        style={{ ...contentNodes[contentKey].style, ...style }}
-        theme={theme}
-        {...rest}
-      >
-        {render
-          ? render(copyToRender)
-          : copyToRender}
-        {children}
-      </WrappedComponent>
-    );
-  });
+  forwardRef(
+    (
+      { style, contentKey, contentParams = {}, render, children, ...rest }: any,
+      ref
+    ) => {
+      const { lang, contentNodes, theme } = useContext(ContentContext);
+      const { copy } = contentNodes[contentKey];
+      const copyToRender = interpolate(copy[lang], contentParams);
+      return (
+        <WrappedComponent
+          ref={ref}
+          style={{ ...contentNodes[contentKey].style, ...style }}
+          theme={theme}
+          {...rest}
+        >
+          {render ? render(copyToRender) : copyToRender}
+          {children}
+        </WrappedComponent>
+      );
+    }
+  );
 
 export const useContent = (): ContentContext => {
   return useContext(ContentContext);
 };
 
 const baseTextStyles = css`
-  text-align: ${props => props.centered ? 'center': 'left'};
-`
+  ${props =>
+    props.centered &&
+    `
+    text-align: center;
+  `};
+`;
 export const H1 = withContent(styled.h1`
   ${baseTextStyles};
 `);

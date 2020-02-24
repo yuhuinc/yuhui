@@ -53,6 +53,9 @@ const StyledCloseText = styled.span`
   display: block;
   margin-top: 8px;
   color: ${colors.GRAY};
+  ${device.mobile`
+    display: none;
+  `};
 `;
 
 const StyledChildrenContainer = styled.div`
@@ -70,6 +73,7 @@ export const DialogFullScreen = ({
   baseId,
   visible,
   hide,
+  hideOnClickOutside,
   ...rest
 }: DialogProps) => {
   const { lang, theme } = useContent();
@@ -79,6 +83,7 @@ export const DialogFullScreen = ({
       baseId={baseId}
       visible={visible}
       hide={hide}
+      hideOnClickOutside={hideOnClickOutside || false}
       {...rest}
     >
       {visible && <StyledChildrenContainer>{children}</StyledChildrenContainer>}
