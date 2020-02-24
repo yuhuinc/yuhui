@@ -58,7 +58,9 @@ export const Carousel = ({ pageIndex, pages, ...rest }: CarouselProps) => {
         pageWidth={pageWidth}
       >
         {pages.map((page, i) => (
-          <CarouselPage shouldRender={pageIndex === i}>{page}</CarouselPage>
+          <CarouselPage pageWidth={pageWidth} shouldRender={pageIndex === i}>
+            {page}
+          </CarouselPage>
         ))}
       </StyledInner>
     </StyledContainer>
@@ -66,7 +68,7 @@ export const Carousel = ({ pageIndex, pages, ...rest }: CarouselProps) => {
 };
 
 const StyledPageContainer = styled.div`
-  width: 100%;
+  width: ${props => props.pageWidth + "px" || "100%"};
   visibility: ${props => (props.shouldRender ? "visible" : "hidden")};
 `;
 
@@ -78,9 +80,9 @@ const StyledPageInner = styled.div`
   align-items: center;
 `;
 
-const CarouselPage = ({ shouldRender, children }) => {
+const CarouselPage = ({ pageWidth, shouldRender, children }) => {
   return (
-    <StyledPageContainer shouldRender={shouldRender}>
+    <StyledPageContainer pageWidth={pageWidth} shouldRender={shouldRender}>
       <StyledPageInner shouldRender={shouldRender}>{children}</StyledPageInner>
     </StyledPageContainer>
   );

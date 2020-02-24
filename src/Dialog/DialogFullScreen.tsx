@@ -9,6 +9,7 @@ import { MdClose } from "react-icons/md";
 
 import { useContent } from "../Content/Content";
 import { colors } from "../shared/constants";
+import { device } from "../shared/mediaHelper";
 
 interface DialogProps {
   label: string;
@@ -27,6 +28,9 @@ const StyledDialog = styled(RKDialog)`
   justify-content: center;
   align-items: center;
   z-index: 999;
+  ${device.mobile`
+    padding: 28px;
+  `}
 `;
 
 const StyledCloseContainer = styled(Tabbable)`
@@ -39,6 +43,10 @@ const StyledCloseContainer = styled(Tabbable)`
   cursor: pointer;
   background: none;
   border: none;
+  ${device.mobile`
+    top: 28px;
+    right: 28px;
+  `}
 `;
 
 const StyledCloseText = styled.span`
@@ -49,7 +57,7 @@ const StyledCloseText = styled.span`
 
 const StyledChildrenContainer = styled.div`
   width: 100%;
-`
+`;
 
 const closeCopy = {
   en: "esc",
@@ -66,7 +74,13 @@ export const DialogFullScreen = ({
 }: DialogProps) => {
   const { lang, theme } = useContent();
   return (
-    <StyledDialog aria-label={label} baseId={baseId} visible={visible} hide={hide} {...rest}>
+    <StyledDialog
+      aria-label={label}
+      baseId={baseId}
+      visible={visible}
+      hide={hide}
+      {...rest}
+    >
       {visible && <StyledChildrenContainer>{children}</StyledChildrenContainer>}
       <StyledCloseContainer onClick={hide}>
         <MdClose
