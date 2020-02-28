@@ -9,9 +9,6 @@
     "deploy-storybook": "storybook-to-ghpages",
     "prepublishOnly": "npm run build"
   },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
   "repository": {
     "url": "git@github.com:yuhuinc/yuhui.git"
   },

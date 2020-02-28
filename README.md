@@ -11,14 +11,6 @@ Accessible React components
 
 ### Using the package
 
-1. Add a `.npmrc` file in the root directory of your project with the following content:
-
-```
-@yuhuinc:registry=https://npm.pkg.github.com/
-```
-
-2. Add the package
-
 ```bash
 $ npm install @yuhuinc/yuhui
 $ yarn add @yuhui/yuhui
