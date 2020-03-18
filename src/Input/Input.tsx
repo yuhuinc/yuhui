@@ -1,9 +1,9 @@
-import React from 'react'
-import styled from 'styled-components';
-import { useContent } from '../Content/Content';
+import React from "react";
+import styled from "styled-components";
+import { useContent } from "../Content/Content";
 
 const StyledInput = styled.input`
-  width: ${props => props.width || '100%'};
+  width: ${props => props.width || "100%"};
   padding: 1rem;
   background-color: #fff;
   border-radius: 5px;
@@ -15,10 +15,8 @@ const StyledInput = styled.input`
   }
 `;
 
-export const Input = ({contentKey, ...rest}) => {
-    const {lang, contentNodes, theme} = useContent();
-    const placeholder = contentNodes[contentKey].copy[lang]
-    return (
-        <StyledInput placeholder={placeholder} theme={theme} {...rest} />
-    )
-}
+export const Input = ({ contentKey, ...rest }) => {
+  const { lang, contentNodes, theme } = useContent();
+  const placeholder = contentNodes[contentKey].copy[lang];
+  return <StyledInput placeholder={placeholder} theme={theme} {...rest} />;
+};
