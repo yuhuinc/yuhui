@@ -1,4 +1,4 @@
-# Carousel
+# InputCollection
 
 **Available components**:
 
@@ -15,13 +15,13 @@ The name provided is appended with index when outputting value (eg name[0]: "som
 
 ### Props
 
-| name        | type   | default | description                |
-| ----------- | ------ | ------- | -------------------------- |
-| type        | string |         | Type of html input         |
-| placeholder | string |         | Placeholder for input      |
-| addVerbiage | string |         | Text for add button        |
-| onChange    | any    |         | optional onChange handler  |
-| name        | string |         | Name for key of the values |
+| name        | type   | default | description                                                                                                                                                                            |
+| ----------- | ------ | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| type        | string |         | Type of html input                                                                                                                                                                     |
+| placeholder | string |         | Placeholder for input                                                                                                                                                                  |
+| addVerbiage | string |         | Text for add button                                                                                                                                                                    |
+| onChange    | any    |         | An optional callback that is called for all inputs individually. The first parameter is the event and the second parameter is the index of the individual input that is being changed. |
+| name        | string |         | Name for key of the values                                                                                                                                                             |
 
 ### Example
 
