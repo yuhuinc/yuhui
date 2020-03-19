@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { useContent, WithContentProps } from '../Content/Content';
-import { AiOutlineClose, AiOutlinePlus } from 'react-icons/ai';
+import React, { useState } from "react";
+import styled from "styled-components";
+import { useContent, WithContentProps } from "../Content/Content";
+import { AiOutlineClose, AiOutlinePlus } from "react-icons/ai";
 
 const StyledInputContainer = styled.div`
   background-color: ${props => props.theme.colors.primary.lightgrey};
@@ -67,7 +67,7 @@ const StyledAiOutlinePlus = styled(AiOutlinePlus)`
 `;
 
 export interface InputCollectionProps extends WithContentProps {
-  type: 'text' | 'email' | 'number' | 'url';
+  type: "text" | "email" | "number" | "url";
   addVerbiage: string;
   [key: string]: any;
 }
@@ -79,11 +79,11 @@ export const InputCollection: InputCollection = ({
   addVerbiage,
   onChange,
   name,
-  type,
+  type
 }) => {
   const { lang, contentNodes, theme } = useContent();
   const placeholder = contentNodes[contentKey].copy[lang];
-  const [inputs, setInputs] = useState(['']);
+  const [inputs, setInputs] = useState([""]);
 
   const handleChange = (e, index) => {
     let newValues = [...inputs];
@@ -103,7 +103,7 @@ export const InputCollection: InputCollection = ({
 
   const handleAddInput = () => {
     let newValues = [...inputs];
-    newValues.push('');
+    newValues.push("");
     setInputs(newValues);
   };
 
@@ -119,7 +119,11 @@ export const InputCollection: InputCollection = ({
             onChange={e => handleChange(e, index)}
             theme={theme}
           />
-          <StyledRemoveButton type="button" onClick={() => handleRemoveInput(index)} theme={theme}>
+          <StyledRemoveButton
+            type="button"
+            onClick={() => handleRemoveInput(index)}
+            theme={theme}
+          >
             <AiOutlineClose />
           </StyledRemoveButton>
         </StyledInner>

@@ -1,38 +1,42 @@
-import React from 'react';
+import React from "react";
 
-import { ContentProvider, InputCollection } from '../../src';
+import { ContentProvider, InputCollection } from "../../src";
 
 export default {
-  title: 'Components/Input',
+  title: "Components/Input"
 };
 
 const contentNodes = {
-  'demo.placeholder': {
+  "demo.placeholder": {
     copy: {
-      en: 'placeholder value',
-      fr: 'placeholder value',
-    },
-  },
+      en: "placeholder value",
+      fr: "placeholder value"
+    }
+  }
 };
 
 const theme = {
   colors: {
     primary: {
-      grey: '#d9d9e3',
-      mediumgrey: '#c6c6d0',
-      lightgrey: '#fafafc',
-      dark: '#230cc2',
-    },
-  },
+      grey: "#d9d9e3",
+      mediumgrey: "#c6c6d0",
+      lightgrey: "#fafafc",
+      dark: "#230cc2"
+    }
+  }
 };
 
 const content = {
   contentNodes,
-  theme,
+  theme
 };
 
 export const InputCollections = () => (
   <ContentProvider lang="en" content={content}>
-    <InputCollection type="text" contentKey="demo.placeholder" addVerbiage="Add additional input" />
+    <InputCollection
+      type="text"
+      contentKey="demo.placeholder"
+      addVerbiage="Add additional input"
+    />
   </ContentProvider>
 );
