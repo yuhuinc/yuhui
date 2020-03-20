@@ -11,9 +11,12 @@ const StyledInputContainer = styled.div`
   margin: 15px 0;
 `;
 
+const StyledOuter = styled.div`
+  margin-bottom: 8px;
+`;
+
 const StyledInner = styled.div`
   display: flex;
-  margin-bottom: 8px;
 `;
 
 const StyledInput = styled.input`
@@ -66,6 +69,11 @@ const StyledAiOutlinePlus = styled(AiOutlinePlus)`
   margin-right: 15px;
 `;
 
+const StyledError = styled.div`
+  color: red;
+  margin: 0px;
+`;
+
 export interface InputCollectionProps extends WithContentProps {
   type: "text" | "email" | "number" | "url";
   addVerbiage: string;
@@ -79,7 +87,8 @@ export const InputCollection: InputCollection = ({
   addVerbiage,
   onChange,
   name,
-  type
+  type,
+  errors
 }) => {
   const { lang, contentNodes, theme } = useContent();
   const placeholder = contentNodes[contentKey].copy[lang];
@@ -91,49 +100,67 @@ export const InputCollection: InputCollection = ({
     newValues[index] = e.target.value;
     setInputs(newValues);
     if (onChange) {
-      onChange(e, index);
+      onChange(e, index, newValues);
     }
   };
 
-  const handleRemoveInput = index => {
+  const handleRemoveInput = (e, index) => {
     let newValues = [...inputs];
     newValues.splice(index, 1);
     setInputs(newValues);
+    if (onChange) {
+      onChange(e, index, newValues);
+    }
   };
 
-  const handleAddInput = () => {
+  const handleAddInput = e => {
     let newValues = [...inputs];
     newValues.push("");
     setInputs(newValues);
+    if (onChange) {
+      onChange(e, null, newValues);
+    }
   };
 
   return (
     <StyledInputContainer theme={theme}>
       {inputs.map((value, index) => (
-        <StyledInner theme={theme}>
-          <StyledInput
-            type={type}
-            name={`${name}[${index}]`}
-            placeholder={placeholder}
-            value={value}
-            onChange={e => handleChange(e, index)}
-            theme={theme}
-          />
-          <StyledRemoveButton
-            type="button"
-            onClick={() => handleRemoveInput(index)}
-            theme={theme}
-          >
-            <AiOutlineClose />
-          </StyledRemoveButton>
-        </StyledInner>
+        <StyledOuter>
+          <StyledInner theme={theme}>
+            <StyledInput
+              type={type}
+              name={`${name}[${index}]`}
+              placeholder={placeholder}
+              value={value}
+              onChange={e => handleChange(e, index)}
+              theme={theme}
+            />
+            <StyledRemoveButton
+              type="button"
+              onClick={e => handleRemoveInput(e, index)}
+              theme={theme}
+            >
+              <AiOutlineClose />
+            </StyledRemoveButton>
+          </StyledInner>
+          {!!(errors && Array.isArray(errors)) ? (
+            <StyledError>{errors[index]}</StyledError>
+          ) : null}
+        </StyledOuter>
       ))}
-      <StyledAddButton type="button" onClick={handleAddInput} theme={theme}>
+      <StyledAddButton
+        type="button"
+        onClick={e => handleAddInput(e)}
+        theme={theme}
+      >
         <div>
           <StyledAiOutlinePlus />
         </div>
         {addVerbiage}
       </StyledAddButton>
+      {!!errors && !Array.isArray(errors) && (
+        <StyledError>{errors}</StyledError>
+      )}
     </StyledInputContainer>
   );
 };

@@ -15,13 +15,14 @@ The name provided is appended with index when outputting value (eg name[0]: "som
 
 ### Props
 
-| name        | type   | default | description                                                                                                                                                                            |
-| ----------- | ------ | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| type        | string |         | Type of html input                                                                                                                                                                     |
-| placeholder | string |         | Placeholder for input                                                                                                                                                                  |
-| addVerbiage | string |         | Text for add button                                                                                                                                                                    |
-| onChange    | any    |         | An optional callback that is called for all inputs individually. The first parameter is the event and the second parameter is the index of the individual input that is being changed. |
-| name        | string |         | Name for key of the values                                                                                                                                                             |
+| name        | type         | default | description                                                                                                                                                                                                                                                        |
+| ----------- | ------------ | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| type        | string       |         | Type of html input                                                                                                                                                                                                                                                 |
+| placeholder | string       |         | Placeholder for input                                                                                                                                                                                                                                              |
+| addVerbiage | string       |         | Text for add button                                                                                                                                                                                                                                                |
+| onChange    | any          |         | An optional callback that is called for all inputs individually. The first parameter is the event and the second parameter is the index of the individual input that is being changed. Third parameter returns the updated collection of values stored as an array |
+| name        | string       |         | Name for key of the values                                                                                                                                                                                                                                         |
+| errors      | string/array |         | Error verbiages. If an array of errors are passed in, errors attach to the same index of the input collection. If a single string is passed, error will attach to the whole collection                                                                             |
 
 ### Example
 
@@ -30,11 +31,18 @@ const handleChange = (event, index) => {
   console.log(event, index);
 };
 
+const InputCollectionSchema = Yup.object().shape({
+  email: Yup.array()
+    .required("cannot be empty array")
+    .of(Yup.string().required("required"))
+});
+
 <InputCollection
   type="text"
   name="email"
   placeholder="Enter email"
   addVerbiage="Add a new email"
   onChange={handleChange}
+  errors={errors.email}
 />;
 ```
