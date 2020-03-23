@@ -5,4 +5,4 @@ export * from "./Dialog/DialogFullScreen";
 export * from "./Input/RadioCards";
 export * from "./Input/Input";
 export * from "./Carousel/Carousel";
-export * from "./Input/InputCollection";
+export * from "./InputCollection/InputCollection";

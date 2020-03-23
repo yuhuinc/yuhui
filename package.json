@@ -20,8 +20,7 @@
     "ramda": "^0.26.1",
     "react-icons": "^3.9.0",
     "reakit": "^1.0.0-beta.14",
-    "styled-components": "^5.0.0",
-    "yup": "^0.28.3"
+    "styled-components": "^5.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.8.3",
@@ -42,7 +41,8 @@
     "husky": "3.1.0",
     "pretty-quick": "^2.0.1",
     "react-hook-form": "^4.9.3",
-    "typescript": "^3.7.5"
+    "typescript": "^3.7.5",
+    "yup": "^0.28.3"
   },
   "husky": {
     "hooks": {

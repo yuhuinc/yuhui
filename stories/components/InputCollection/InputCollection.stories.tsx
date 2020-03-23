@@ -2,10 +2,11 @@ import React from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 
-import { ContentProvider, InputCollection } from "../../src";
+import markdown from "./InputCollection.md";
+import { ContentProvider, InputCollection } from "../../../src";
 
 export default {
-  title: "Components/Input"
+  title: "Components/InputCollection"
 };
 
 const contentNodes = {
@@ -75,3 +76,9 @@ export const InputCollections = () => (
     </Formik>
   </ContentProvider>
 );
+
+InputCollections.story = {
+  parameters: {
+    notes: { markdown }
+  }
+};

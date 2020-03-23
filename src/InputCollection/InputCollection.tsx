@@ -72,6 +72,7 @@ const StyledAiOutlinePlus = styled(AiOutlinePlus)`
 const StyledError = styled.div`
   color: red;
   margin: 0px;
+  padding-left: 17px;
 `;
 
 export interface InputCollectionProps extends WithContentProps {
@@ -88,7 +89,8 @@ export const InputCollection: InputCollection = ({
   onChange,
   name,
   type,
-  errors
+  errors,
+  ...rest
 }) => {
   const { lang, contentNodes, theme } = useContent();
   const placeholder = contentNodes[contentKey].copy[lang];
@@ -123,7 +125,7 @@ export const InputCollection: InputCollection = ({
   };
 
   return (
-    <StyledInputContainer theme={theme}>
+    <StyledInputContainer theme={theme} {...rest}>
       {inputs.map((value, index) => (
         <StyledOuter>
           <StyledInner theme={theme}>
@@ -158,9 +160,9 @@ export const InputCollection: InputCollection = ({
         </div>
         {addVerbiage}
       </StyledAddButton>
-      {!!errors && !Array.isArray(errors) && (
+      {!!errors && !Array.isArray(errors) ? (
         <StyledError>{errors}</StyledError>
-      )}
+      ) : null}
     </StyledInputContainer>
   );
 };
