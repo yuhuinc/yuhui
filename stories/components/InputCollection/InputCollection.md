@@ -32,6 +32,10 @@ Errors are easiest to use with Yup because the component handles how yup passes 
 If custom error validations are required, individual error messages (for each input) can be passed as an array and the index of the error message will correspond to the index of the input of the collection. For the error of the whole collection, pass as a single string.
 One limitation is error only displays for individual inputs or the whole collection.
 
+### TODO
+
+Component currently display error when inputs are changed, added or removed. We should be able to also display errors to specific inputs when touched and/or when submitting. (Touched can be implemented using onBlur in the InputCollection component, but need to figure out how to get proper errors when submitting after touched)
+
 ### Example
 
 ```javascript
