@@ -41,7 +41,8 @@
     "husky": "3.1.0",
     "pretty-quick": "^2.0.1",
     "react-hook-form": "^4.9.3",
-    "typescript": "^3.7.5"
+    "typescript": "^3.7.5",
+    "yup": "^0.28.3"
   },
   "husky": {
     "hooks": {
