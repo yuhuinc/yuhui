@@ -21,7 +21,7 @@ const theme = {
   colors: {
     primary: {
       light: "#d0dbfd",
-      dark: "#230cc2"
+      dark: "2000ff"
     }
   }
 };
@@ -36,7 +36,7 @@ const StyledContainer = styled.div`
 `;
 
 export const NumberInputs = () => {
-  const [value, setValue] = useState("0");
+  const [value, setValue] = useState("5");
 
   const setNewValue = newValue => {
     if (newValue >= 0) {
@@ -46,7 +46,13 @@ export const NumberInputs = () => {
   return (
     <StyledContainer>
       <ContentProvider lang="en" content={content}>
-        <NumberInput title="Applicants" value={value} callback={setNewValue} />
+        <NumberInput
+          title="Applicants"
+          value={value}
+          callback={setNewValue}
+          min={5}
+          max={25}
+        />
       </ContentProvider>
     </StyledContainer>
   );

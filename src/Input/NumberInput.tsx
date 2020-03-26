@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import styled from "styled-components";
 
 import { colors } from "../shared/constants";
@@ -21,7 +21,7 @@ const StyledInner = styled.div`
 const StyledTitle = styled.div`
   font-size: 18px;
   font-weight: 600;
-  color: ${colors.DARK_GRAY};
+  color: ${props => props.theme?.colors?.black?.dark || colors.DARK_GRAY};
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -56,9 +56,12 @@ const StyledInput = styled.input`
 const StyledButton = styled.button`
   width: 24px;
   height: 24px;
-  border: ${`solid 1.5px ${colors.PURE_BLUE}`};
+  border-style: solid;
+  border-width: 1.5px;
+  border-color: ${props =>
+    props.theme?.colors?.primary?.dark || colors.PURE_BLUE};
   border-radius: 50%;
-  color: ${colors.PURE_BLUE};
+  color: ${props => props.theme?.colors?.primary?.dark || colors.PURE_BLUE};
   opacity: ${props => (props.disabled ? "37%" : "100%")};
   cursor: pointer;
 `;
@@ -66,8 +69,8 @@ const StyledButton = styled.button`
 interface NumberInputProps {
   title: string;
   value: string;
-  min: number;
-  max: number;
+  min?: number;
+  max?: number;
   callback: (newValue: number) => void;
   [key: string]: any;
 }
@@ -79,46 +82,62 @@ export const NumberInput = ({
   max = 99,
   callback,
   ...rest
-}: NumberInputProps) => (
-  <StyledContainer>
-    <StyledInner>
-      <StyledTitle>
-        <span>{title}</span>
-      </StyledTitle>
-      <StyledInputGroup>
-        <StyledButton
-          type="button"
-          onClick={() => callback(parseInt(value, 10) - 1)}
-          disabled={parseInt(value, 10) <= min}
-        >
-          -
-        </StyledButton>
-        <StyledInput
-          type="number"
-          value={value}
-          min={min}
-          max={max}
-          onChange={e => {
-            const newValue = e.target.value;
-            const num = parseInt(newValue, 10);
-            if (
-              typeof num === "number" &&
-              !isNaN(num) &&
-              newValue >= min && newValue <= max
-            ) {
-              callback(newValue);
-            }
-          }}
-          {...rest}
-        />
-        <StyledButton
-          type="button"
-          onClick={() => callback(parseInt(value, 10) + 1)}
-          disabled={parseInt(value, 10) >= max}
-        >
-          +
-        </StyledButton>
-      </StyledInputGroup>
-    </StyledInner>
-  </StyledContainer>
-);
+}: NumberInputProps) => {
+  const handleDecrement = useCallback(() => {
+    callback(parseInt(value, 10) - 1);
+  }, [callback]);
+
+  const handleIncrement = useCallback(() => {
+    callback(parseInt(value, 10) + 1);
+  }, [callback]);
+
+  const handleChange = useCallback(
+    e => {
+      const newValue = e.target.value;
+      const num = parseInt(newValue, 10);
+      if (
+        typeof num === "number" &&
+        !isNaN(num) &&
+        newValue >= min &&
+        newValue <= max
+      ) {
+        callback(newValue);
+      }
+    },
+    [callback]
+  );
+
+  return (
+    <StyledContainer>
+      <StyledInner>
+        <StyledTitle>
+          <span>{title}</span>
+        </StyledTitle>
+        <StyledInputGroup>
+          <StyledButton
+            type="button"
+            onClick={handleDecrement}
+            disabled={parseInt(value, 10) <= min}
+          >
+            -
+          </StyledButton>
+          <StyledInput
+            type="number"
+            value={value}
+            min={min}
+            max={max}
+            onChange={handleChange}
+            {...rest}
+          />
+          <StyledButton
+            type="button"
+            onClick={handleIncrement}
+            disabled={parseInt(value, 10) >= max}
+          >
+            +
+          </StyledButton>
+        </StyledInputGroup>
+      </StyledInner>
+    </StyledContainer>
+  );
+};
