@@ -39,12 +39,23 @@ const StyledInput = styled.input`
   margin-right: 5px;
   height: 20px;
   outline: none;
+  border: none;
+  text-align: center;
+  /* Hide arrows on chrome, safari, edge, opera */
+  ::-webkit-inner-spin-button,
+  ::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  /* Hide arrows on firefox */
+  [type="number"] {
+    -moz-appearance: textfield;
+  }
 `;
 
 const StyledButton = styled.button`
   width: 24px;
   height: 24px;
-  outline: none;
   border: ${`solid 1.5px ${colors.PURE_BLUE}`};
   border-radius: 50%;
   color: ${colors.PURE_BLUE};
@@ -88,7 +99,15 @@ export const NumberInput = ({
           min={min}
           max={max}
           onChange={e => {
-            callback(e.target.value);
+            const newValue = e.target.value;
+            const num = parseInt(newValue, 10);
+            if (
+              typeof num === "number" &&
+              !isNaN(num) &&
+              newValue >= min && newValue <= max
+            ) {
+              callback(newValue);
+            }
           }}
           {...rest}
         />
