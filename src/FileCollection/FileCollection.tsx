@@ -4,7 +4,7 @@ import { useDropzone } from "react-dropzone";
 import styled from "styled-components";
 import { useContent, WithContentProps } from "../Content/Content";
 import { AiOutlineClose } from "react-icons/ai";
-import fileDropIcon from "../icons/file-drop.png";
+import fileDropIcon from "./file-drop.png";
 
 const StyledOuterContainer = styled.div``;
 
@@ -69,10 +69,10 @@ const StyledRemoveButton = styled.button`
   color: ${props => props.theme.colors.primary.navyblue};
 `;
 
-const StyledError = styled.div`
-  color: red;
-  margin: 0px;
-  padding-left: 17px;
+const StyledDropIcon = styled.img`
+  height: 20px;
+  width: 16px;
+  margin: 5px 20px;
 `;
 
 export interface FileCollectionProps extends WithContentProps {
@@ -83,9 +83,9 @@ export type FileCollection = React.ComponentType<FileCollectionProps>;
 
 export const FileCollection: FileCollection = ({
   contentKey,
+  newFiles,
   data,
   onChange,
-  errors,
   onDropVerbiage,
   dropFileVeriage,
   browseVerbiage,
@@ -93,12 +93,13 @@ export const FileCollection: FileCollection = ({
 }) => {
   const { theme } = useContent();
   const [files, setFiles] = useState([]);
+  const [uploadedFiles, setUploadedFiles] = useState([]);
   const [filesUploaded, setFilesUploaded] = useState(false);
 
   useEffect(() => {
     if (data) {
-      setFiles(data);
-      setFilesUploaded(true);
+      setUploadedFiles(data);
+      if (data.length > 0) setFilesUploaded(true);
     }
   }, [data]);
 
@@ -106,25 +107,33 @@ export const FileCollection: FileCollection = ({
     let newFiles = [...files];
     newFiles.push(...acceptedFiles);
     setFilesUploaded(true);
-    setFiles(
-      newFiles.map(file =>
-        Object.assign(file, {
-          src: URL.createObjectURL(file)
-        })
-      )
-    );
+    setFiles(newFiles);
     if (onChange) {
-      onChange(newFiles);
+      onChange(newFiles, uploadedFiles);
     }
   };
 
   const removeFile = file => () => {
     let newFiles = [...files];
-    newFiles.splice(newFiles.indexOf(file), 1);
-    if (newFiles.length === 0) setFilesUploaded(false);
+    let index = newFiles.indexOf(file);
+    newFiles.splice(index, 1);
     setFiles(newFiles);
+    if (files.length === 0 || uploadedFiles.length === 0)
+      setFilesUploaded(false);
     if (onChange) {
-      onChange(newFiles);
+      onChange(newFiles, uploadedFiles);
+    }
+  };
+
+  const removeUploadedFiles = file => () => {
+    let newFiles = [...uploadedFiles];
+    let index = newFiles.indexOf(file);
+    newFiles[index].keep = false;
+    setUploadedFiles(newFiles);
+    if (files.length === 0 || uploadedFiles.length === 0)
+      setFilesUploaded(false);
+    if (onChange) {
+      onChange(files, newFiles);
     }
   };
 
@@ -152,6 +161,26 @@ export const FileCollection: FileCollection = ({
           </StyledRemoveButton>
         </StyledFileContainer>
       ))}
+      {uploadedFiles.map(file =>
+        file.keep === false ? null : (
+          <StyledFileContainer theme={theme}>
+            <StyledFileNames
+              href={file.src}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {file.name}
+            </StyledFileNames>
+            <StyledRemoveButton
+              type="button"
+              onClick={removeUploadedFiles(file)}
+              theme={theme}
+            >
+              <AiOutlineClose />
+            </StyledRemoveButton>
+          </StyledFileContainer>
+        )
+      )}
       <StyledContainer
         {...getRootProps({ isDragActive })}
         theme={theme}
@@ -165,7 +194,7 @@ export const FileCollection: FileCollection = ({
         ) : (
           <StyledDropzoneText theme={theme} filesUploaded={filesUploaded}>
             <StyledDropHereText theme={theme} filesUploaded={filesUploaded}>
-              <AiOutlineClose />
+              <StyledDropIcon src={fileDropIcon} />
               {dropFileVeriage}
             </StyledDropHereText>
             <StyledBrowseFileText theme={theme}>
@@ -174,9 +203,6 @@ export const FileCollection: FileCollection = ({
           </StyledDropzoneText>
         )}
       </StyledContainer>
-      {!!errors && !Array.isArray(errors) ? (
-        <StyledError>{errors}</StyledError>
-      ) : null}
     </StyledOuterContainer>
   );
 };
