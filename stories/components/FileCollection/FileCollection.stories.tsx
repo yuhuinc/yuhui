@@ -1,141 +1,129 @@
-import React, { useState } from 'react';
-import { Formik, Form } from 'formik';
-import * as Yup from 'yup';
-import styled from 'styled-components';
+import React, { useState } from "react";
+import { Formik, Form } from "formik";
+import * as Yup from "yup";
+import styled from "styled-components";
 
-import markdown from './FileCollection.md';
-import { ContentProvider, FileCollection } from '../../../src';
-import { InputCollection } from '../../../src';
-import { MdSentimentSatisfied } from 'react-icons/md';
+import markdown from "./FileCollection.md";
+import { ContentProvider, FileCollection } from "../../../src";
+import { Input, InputCollection } from "../../../src";
 
 export default {
-  title: 'Components/FileCollection',
+  title: "Components/FileCollection"
 };
 
 const contentNodes = {
-  'demo.placeholder': {
+  "demo.placeholder": {
     copy: {
-      en: 'placeholder value',
-      fr: 'placeholder value',
-    },
-  },
+      en: "placeholder value",
+      fr: "placeholder value"
+    }
+  }
 };
+
+// const theme = {
+//   colors: {
+//     primary: {
+//       grey: '#d9d9e3',
+//       medium: '#c6c6d0',
+//       light: '#dfe8ff',
+//       dark: '#2000ff',
+//     },
+//   },
+// };
 
 const theme = {
   colors: {
     primary: {
-      grey: '#d9d9e3',
-      mediumgrey: '#c6c6d0',
-      lightgrey: '#dfe8ff',
-      dark: '#230cc2',
-      navyblue: '#2000ff',
+      light: "#f1f1f1",
+      medium: "#d9d9e3",
+      label: "#b5b5b5",
+      dark: "#74777a"
     },
-  },
+    secondary: {
+      medium: "#2000ff"
+    },
+    highlight: {
+      medium: "#230cc2"
+    }
+  }
 };
 
 const content = {
   contentNodes,
-  theme,
+  theme
 };
 
-const StyledError = styled.div`
-  color: red;
-  margin: 0px;
-  padding-left: 17px;
-`;
-
 const FileCollectionSchema = Yup.object().shape({
-  files: Yup.array().required('add a new file'),
-  uploadedFiles: Yup.array().of(
-    Yup.object({
-      keep: Yup.boolean().test({
-        name: 'upload-file-test',
-        test: function(value) {
-          return value === false
-            ? this.createError({
-                message: 'add a new file1',
-                path: this.path,
-              })
-            : true;
-        },
-      }),
-    })
-  ),
+  company_names: Yup.array()
+    .required("cannot be empty array")
+    .of(Yup.string().required("required"))
 });
 
 const uploadedFiles = [
   {
-    name: 'file1.txt',
-    src: 'https://www.google.ca',
-    file_type: 'text/plain',
-    keep: true,
+    name: "file1.txt",
+    src: "https://www.google.ca",
+    file_type: "text/plain",
+    keep: true
   },
   {
-    name: 'file1.txt',
-    src: 'https://www.google.ca',
-    file_type: 'text/plain',
-    keep: true,
-  },
+    name: "file1.txt",
+    src: "https://www.google.ca",
+    file_type: "text/plain",
+    keep: true
+  }
 ];
 
-
-// new File(['blob'], uploadedFiles[0].name, {
-//   type: uploadedFiles[0].file_type
-// })
-
-// document_template.files.each do |file|
-//   if !params[:files].map{|file| file.filename}.include?(file.filename)
-//     // delete this file
-//   end
-// end
-
-// params[:files].each do |file|
-//   if !document_template.files.map{|file| file.filename}.include?(file.filename)
-//     // create new file
-//   end
-// end
-
-const renderError = (error, values) => {
-  if (!!!error) return null;
-  if (values.files.length > 0 || values.uploadedFiles.filter(file => file.keep).length > 0)
-    return null;
-
-  if (Array.isArray(error.uploadedFiles)) {
-    return <StyledError>{error.uploadedFiles[0].keep}</StyledError>;
-  } else {
-    return <StyledError>{error.files}</StyledError>;
-  }
-};
-
 export const FileCollections = () => {
+  const fileCollectionValid = values =>
+    values.files.length > 0 ||
+    !values.uploadedFiles.every(file => file.keep === false);
+
   return (
     <ContentProvider lang="en" content={content}>
       <Formik
         validationSchema={FileCollectionSchema}
         initialValues={{
           files: [],
-          // uploadedFiles: uploadedFiles,
+          uploadedFiles: uploadedFiles,
+          company_names: []
         }}
         onSubmit={values => {
-          if values.files.length === 0 return
+          if (!fileCollectionValid(values)) {
+            return;
+          }
           console.log(values);
         }}
       >
         {({ values, setFieldValue, errors }) => (
           <Form>
+            <InputCollection
+              type="text"
+              contentKey="demo.placeholder"
+              addVerbiage="Add additional input"
+              onChange={(e, index, newValues) => {
+                setFieldValue("company_names", newValues);
+              }}
+              errors={errors.company_names}
+            />
             <FileCollection
               newFiles={values.files}
               data={values.uploadedFiles}
               onChange={(newValues, uploadedValues) => {
-                setFieldValue('files', newValues);
-                setFieldValue('uploadedFiles', uploadedValues);
+                setFieldValue("files", newValues);
+                setFieldValue("uploadedFiles", uploadedValues);
               }}
               contentKey="demo.placeholder" // not used in component
               onDropVerbiage="Drop file here"
               dropFileVeriage="Drag and drop files here"
               browseVerbiage="Or browse files"
             />
-            <div style={{ marginTop: '50px' }}>
+            {!fileCollectionValid(values) && (
+              <div style={{ color: "red" }}>
+                Please uploaded atleast one file
+              </div>
+            )}
+            <div style={{ marginTop: "50px" }}>
               form values
               {JSON.stringify(values)}
             </div>
@@ -153,6 +141,6 @@ export const FileCollections = () => {
 
 FileCollections.story = {
   parameters: {
-    notes: { markdown },
-  },
+    notes: { markdown }
+  }
 };

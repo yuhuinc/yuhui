@@ -21,10 +21,13 @@ const contentNodes = {
 const theme = {
   colors: {
     primary: {
-      grey: "#d9d9e3",
-      mediumgrey: "#c6c6d0",
-      lightgrey: "#fafafc",
-      dark: "#230cc2"
+      light: "#f1f1f1",
+      medium: "#d9d9e3",
+      label: "#b5b5b5",
+      dark: "#74777a"
+    },
+    highlight: {
+      medium: "#230cc2"
     }
   }
 };

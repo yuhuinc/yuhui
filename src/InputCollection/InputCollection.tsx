@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useContent, WithContentProps } from "../Content/Content";
 import { AiOutlineClose, AiOutlinePlus } from "react-icons/ai";
+import { colors } from "../shared/constants";
 
 const StyledInputContainer = styled.div`
-  background-color: ${props => props.theme.colors.primary.lightgrey};
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -21,35 +21,40 @@ const StyledInner = styled.div`
 
 const StyledInput = styled.input`
   border: 1px solid;
-  border-color: ${props => props.theme.colors.primary.grey};
+  border-color: ${props =>
+    props.theme.colors.primary.medium || colors.LIGHT_PERIWINKLE};
   border-radius: 7px;
   width: 95%;
   height: 40px;
   padding-left: 16px;
   font-size: 1rem;
   &::placeholder {
-    color: ${props => props.theme.colors.primary.mediumgrey};
+    color: ${props => props.theme.colors.primary.light || colors.LIGHT_GRAY};
   }
   &:focus {
     outline: none;
-    border-color: ${props => props.theme.colors.primary.dark};
+    border-color: ${props =>
+      props.theme.colors.highlight.medium || colors.ULTRAMARINE_BLUE};
   }
 `;
 
 const StyledAddButton = styled.button`
   display: flex;
   border: 1px solid;
-  border-color: ${props => props.theme.colors.primary.grey};
-  background-color: ${props => props.theme.colors.primary.lightgrey};
+  border-color: ${props =>
+    props.theme.colors.primary.medium || colors.LIGHT_PERIWINKLE};
+  background-color: ${props =>
+    props.theme.colors.primary.light || colors.LIGHT_GRAY};
   width: 95%;
   height: 40px;
   text-align: left;
   font-size: 16px;
-  color: ${props => props.theme.colors.primary.mediumgrey};
+  color: ${props => props.theme.colors.primary.label || colors.LABEL_GRAY};
   border-radius: 7px;
   &:focus {
     outline: none;
-    border-color: ${props => props.theme.colors.primary.dark};
+    border-color: ${props =>
+      props.theme.colors.highlight.medium || colors.ULTRAMARINE_BLUE};
   }
 `;
 
@@ -58,10 +63,10 @@ const StyledRemoveButton = styled.button`
   border: none;
   font-size: 20px;
   color: #b4b7bd;
-  background-color: ${props => props.theme.colors.primary.lightgrey};
   &:focus {
     outline: none;
-    border: 1px solid ${props => props.theme.colors.primary.dark};
+    border: 1px solid
+      ${props => props.theme.colors.highlight.medium || colors.ULTRAMARINE_BLUE};
   }
 `;
 
