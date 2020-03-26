@@ -11,6 +11,12 @@ export default {
   title: "Components/FileCollection"
 };
 
+const StyledError = styled.div`
+  color: red;
+  margin: 0px;
+  padding-left: 17px;
+`;
+
 const contentNodes = {
   "demo.placeholder": {
     copy: {
@@ -19,17 +25,6 @@ const contentNodes = {
     }
   }
 };
-
-// const theme = {
-//   colors: {
-//     primary: {
-//       grey: '#d9d9e3',
-//       medium: '#c6c6d0',
-//       light: '#dfe8ff',
-//       dark: '#2000ff',
-//     },
-//   },
-// };
 
 const theme = {
   colors: {
@@ -77,7 +72,7 @@ const uploadedFiles = [
 export const FileCollections = () => {
   const fileCollectionValid = values =>
     values.files.length > 0 ||
-    !values.uploadedFiles.every(file => file.keep === false);
+    values.uploadedFiles.some(file => file.keep === true);
 
   return (
     <ContentProvider lang="en" content={content}>
@@ -117,11 +112,12 @@ export const FileCollections = () => {
               onDropVerbiage="Drop file here"
               dropFileVeriage="Drag and drop files here"
               browseVerbiage="Or browse files"
+              rejectFileError="Cannot accept that file"
+              acceptedFiles="application/pdf, image/*, text/plain, .zip, .doc"
+              maxSize={10000000}
             />
             {!fileCollectionValid(values) && (
-              <div style={{ color: "red" }}>
-                Please uploaded atleast one file
-              </div>
+              <StyledError>Please uploaded atleast one file</StyledError>
             )}
             <div style={{ marginTop: "50px" }}>
               form values

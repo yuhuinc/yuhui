@@ -25,7 +25,7 @@ Example:
   },
 ```
 
-### Handling Errors
+### Handling Component Errors
 
 Error is not handled in the component. This comes from the fact that we are tracking whether or not an uploaded file should be kept or deleted.
 Error can be handled by checking if `newFile[].length > 0 || !values.uploadedFiles.every(file => file.keep === false)`
@@ -74,6 +74,9 @@ Files can be dragged and dropped or browsed and muli-selected. Files array passe
 | onDropVerbiage  | string |         | Verbiage for the dropzone when files are dragged on top to be dropped                                                                               |
 | dropFileVeriage | string |         | Verbiage for the dropzone when no files are uploaded                                                                                                |
 | browseVerbiage  | string |         | Verbiage for click to browse on dropzone                                                                                                            |
+| rejectFileError | string |         | Verbiage when not accepted files are uploaded or file size is larger than max size                                                                  |
+| acceptedFiles   | string |         | Sets accepted files. Refer to https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#accept                                           |
+| maxSize         | number |         | Max Size of total files that can be uploaded at once.                                                                                               |
 
 ### Example
 
@@ -105,5 +108,8 @@ const existingFiles = [
   onDropVerbiage="Drop file here"
   dropFileVeriage="Drag and drop files here"
   browseVerbiage="Or browse files"
+  rejectFileError="Cannot accept that file"
+  acceptedFiles="application/pdf, image/*, text/plain, .zip"
+  maxSize={10000000}
 />;
 ```

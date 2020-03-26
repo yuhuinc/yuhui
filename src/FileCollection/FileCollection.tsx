@@ -6,6 +6,7 @@ import { useContent, WithContentProps } from "../Content/Content";
 import { AiOutlineClose } from "react-icons/ai";
 import fileDropIcon from "./file-drop.png";
 import { colors } from "../shared/constants";
+import { SpawnSyncOptionsWithStringEncoding } from "child_process";
 
 const StyledOuterContainer = styled.div``;
 
@@ -80,7 +81,16 @@ const StyledDropIcon = styled.img`
   margin: 5px 20px;
 `;
 
+const StyledError = styled.div`
+  color: red;
+  margin: 0px;
+  padding-left: 17px;
+`;
+
 export interface FileCollectionProps extends WithContentProps {
+  acceptedFiles: string;
+  rejectFileError: string;
+  maxSize: number;
   [key: string]: any;
 }
 
@@ -94,6 +104,9 @@ export const FileCollection: FileCollection = ({
   onDropVerbiage,
   dropFileVeriage,
   browseVerbiage,
+  acceptedFiles,
+  rejectFileError,
+  maxSize,
   ...rest
 }) => {
   const { theme } = useContent();
@@ -104,7 +117,8 @@ export const FileCollection: FileCollection = ({
   useEffect(() => {
     if (data) {
       setUploadedFiles(data);
-      if (data.filter(d => d.keep === true).length > 0) setFilesUploaded(true);
+      if (files.length > 0 || data.some(d => d.keep === true))
+        setFilesUploaded(true);
     }
   }, [data]);
 
@@ -123,10 +137,7 @@ export const FileCollection: FileCollection = ({
     let index = newFiles.indexOf(file);
     newFiles.splice(index, 1);
     setFiles(newFiles);
-    if (
-      files.length === 0 ||
-      uploadedFiles.filter(file => file.keep === true).length === 0
-    )
+    if (files.length === 0 || uploadedFiles.every(file => file.keep === false))
       setFilesUploaded(false);
     if (onChange) {
       onChange(newFiles, uploadedFiles);
@@ -138,18 +149,22 @@ export const FileCollection: FileCollection = ({
     let index = newFiles.indexOf(file);
     newFiles[index].keep = false;
     setUploadedFiles(newFiles);
-    if (
-      files.length === 0 ||
-      uploadedFiles.filter(file => file.keep === true).length === 0
-    )
+    if (files.length === 0 || uploadedFiles.every(file => file.keep === false))
       setFilesUploaded(false);
     if (onChange) {
       onChange(files, newFiles);
     }
   };
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    onDrop
+  const {
+    getRootProps,
+    getInputProps,
+    isDragActive,
+    rejectedFiles
+  } = useDropzone({
+    onDrop,
+    accept: acceptedFiles,
+    maxSize: maxSize
   });
 
   return (
@@ -214,6 +229,7 @@ export const FileCollection: FileCollection = ({
           </StyledDropzoneText>
         )}
       </StyledContainer>
+      {rejectedFiles.length > 0 && <StyledError>{rejectFileError}</StyledError>}
     </StyledOuterContainer>
   );
 };
