@@ -40,7 +40,8 @@ export const colors = {
   LIGHT_PURPLE: "#6236ff",
   YELLOW_ORANGE: "#fbb600",
   LIGHT_BLUE_GREY: "#dcd9f5",
-  BLUE_DENIM: "#015eb8"
+  BLUE_DENIM: "#015eb8",
+  PURE_BLUE: "#2000ff"
 };
 
 export const styleValues = {
