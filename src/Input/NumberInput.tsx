@@ -11,21 +11,26 @@ const StyledContainer = styled.div`
 
 const StyledInner = styled.div`
   width: 100%;
-  display: inline;
-  flex-direction: column;
-  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
+  overflow: hidden;
 `;
 
 const StyledTitle = styled.div`
-  float: left;
   font-size: 18px;
   font-weight: 600;
   color: ${colors.DARK_GRAY};
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: calc(70% - 15px);
+  margin-right: 15px;
 `;
 
 const StyledInputGroup = styled.div`
-  float: right;
+  width: 30%;
 `;
 
 const StyledInput = styled.input`
@@ -44,6 +49,7 @@ const StyledButton = styled.button`
   border-radius: 50%;
   color: ${colors.PURE_BLUE};
   opacity: ${props => (props.disabled ? "37%" : "100%")};
+  cursor: pointer;
 `;
 
 interface NumberInputProps {
@@ -66,7 +72,7 @@ export const NumberInput = ({
   <StyledContainer>
     <StyledInner>
       <StyledTitle>
-        <h3 style={{ display: "inline" }}>{title}</h3>
+        <span>{title}</span>
       </StyledTitle>
       <StyledInputGroup>
         <StyledButton
@@ -79,6 +85,8 @@ export const NumberInput = ({
         <StyledInput
           type="number"
           value={value}
+          min={min}
+          max={max}
           onChange={e => {
             callback(e.target.value);
           }}
