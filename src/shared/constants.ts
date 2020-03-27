@@ -41,6 +41,7 @@ export const colors = {
   YELLOW_ORANGE: "#fbb600",
   LIGHT_BLUE_GREY: "#dcd9f5",
   BLUE_DENIM: "#015eb8",
+  LIGHT_BLUE: "#dfe8ff",
   PURE_BLUE: "#2000ff"
 };
 
