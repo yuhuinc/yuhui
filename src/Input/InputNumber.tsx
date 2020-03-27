@@ -66,7 +66,7 @@ const StyledButton = styled.button`
   cursor: pointer;
 `;
 
-interface NumberInputProps {
+interface InputNumberProps {
   title: string;
   value: string;
   min?: number;
@@ -75,14 +75,14 @@ interface NumberInputProps {
   [key: string]: any;
 }
 
-export const NumberInput = ({
+export const InputNumber = ({
   title,
   value,
   min = 0,
   max = 99,
   callback,
   ...rest
-}: NumberInputProps) => {
+}: InputNumberProps) => {
   const handleDecrement = useCallback(() => {
     callback(parseInt(value, 10) - 1);
   }, [callback]);

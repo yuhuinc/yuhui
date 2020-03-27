@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { ContentProvider, NumberInput } from "../../../src";
+import { ContentProvider, InputNumber } from "../../../src";
 
-import markdown from "./NumberInput.md";
+import markdown from "./InputNumber.md";
 
 export default {
-  title: "Components/NumberInput"
+  title: "Components/InputNumber"
 };
 
 const contentNodes = {
@@ -46,7 +46,7 @@ export const NumberInputs = () => {
   return (
     <StyledContainer>
       <ContentProvider lang="en" content={content}>
-        <NumberInput
+        <InputNumber
           title="Applicants"
           value={value}
           callback={setNewValue}

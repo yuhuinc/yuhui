@@ -1,8 +1,8 @@
-# FileCollection
+# InputFile
 
 **Available components**:
 
-- [FileCollection](#filecollection)
+- [InputFile](#inputfile)
 
 **How it is built**
 
@@ -33,12 +33,12 @@ Error can be handled by checking if `newFile[].length > 0 || !values.uploadedFil
 Example
 
 ```javascript
-const fileCollection = () => {
-  const fileCollectionValid = values =>
+const inputFile = () => {
+  const inputFileValid = values =>
     values.files.length > 0 || !values.uploadedFiles.every(file => file.keep === false);
 
   const handleSubmit= (formValues) => {
-    if (!fileCollectionValid(values)) {
+    if (!inputFileValid(values)) {
       return;
     }
     console.log(values);
@@ -46,12 +46,12 @@ const fileCollection = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <FileCollection
+      <InputFile
         newFiles={files} // initial empty []
         data={uploadedFiles}
         ...
       />
-      {!fileCollectionValid(values) && (
+      {!inputFileValid(values) && (
         <div style={{ color: 'red' }}>Please uploaded atleast one file</div>
       )}
     </form>
@@ -60,7 +60,7 @@ const fileCollection = () => {
 
 ```
 
-## FileCollection
+## Inputfile
 
 Files can be dragged and dropped or browsed and muli-selected. Files array passed as prop pre-populate in a list.
 
@@ -101,7 +101,7 @@ const existingFiles = [
   }
 ];
 
-<FileCollection
+<InputFile
   newFiles={[]}
   data={existingFiles}
   onChange={handleChange}
