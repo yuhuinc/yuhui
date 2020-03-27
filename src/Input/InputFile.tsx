@@ -4,8 +4,8 @@ import { useDropzone } from "react-dropzone";
 import styled from "styled-components";
 import { useContent, WithContentProps } from "../Content/Content";
 import { AiOutlineClose } from "react-icons/ai";
-import fileDropIcon from "./file-drop.png";
 import { colors } from "../shared/constants";
+const fileDropIcon = require("./file-drop.png");
 
 const StyledOuterContainer = styled.div``;
 
