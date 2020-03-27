@@ -1,14 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { Formik, Form } from "formik";
-import * as Yup from "yup";
 import styled from "styled-components";
 
 import markdown from "./InputFile.md";
-import { ContentProvider, InputFile } from "../../../src";
-import { Input, InputCollection } from "../../../src";
+import { ContentProvider, InputFile } from "../../src";
 
 export default {
-  title: "Components/InputFile"
+  title: "Components/Input"
 };
 
 const StyledError = styled.div`
@@ -48,12 +46,6 @@ const content = {
   theme
 };
 
-const InputFileSchema = Yup.object().shape({
-  company_names: Yup.array()
-    .required("cannot be empty array")
-    .of(Yup.string().required("required"))
-});
-
 const uploadedFiles = [
   {
     name: "file1.txt",
@@ -77,11 +69,9 @@ export const InputFiles = () => {
   return (
     <ContentProvider lang="en" content={content}>
       <Formik
-        validationSchema={InputFileSchema}
         initialValues={{
           files: [],
-          uploadedFiles: uploadedFiles,
-          company_names: []
+          uploadedFiles: uploadedFiles
         }}
         onSubmit={values => {
           if (!inputFileValid(values)) {
@@ -92,15 +82,6 @@ export const InputFiles = () => {
       >
         {({ values, setFieldValue, errors }) => (
           <Form>
-            <InputCollection
-              type="text"
-              contentKey="demo.placeholder"
-              addVerbiage="Add additional input"
-              onChange={(e, index, newValues) => {
-                setFieldValue("company_names", newValues);
-              }}
-              errors={errors.company_names}
-            />
             <InputFile
               newFiles={values.files}
               data={values.uploadedFiles}

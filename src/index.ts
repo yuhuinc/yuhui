@@ -7,4 +7,4 @@ export * from "./Input/Input";
 export * from "./Input/InputNumber";
 export * from "./Carousel/Carousel";
 export * from "./InputCollection/InputCollection";
-export * from "./InputFile/InputFile";
+export * from "./Input/InputFile";
