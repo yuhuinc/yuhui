@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ContentProvider, Input } from "../../src";
+import { ContentProvider, Input } from "../../../src";
 
 export default {
   title: "Components/Input"

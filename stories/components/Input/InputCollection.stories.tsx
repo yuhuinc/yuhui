@@ -6,7 +6,7 @@ import markdown from "./InputCollection.md";
 import { ContentProvider, InputCollection } from "../../../src";
 
 export default {
-  title: "Components/InputCollection"
+  title: "Components/Input"
 };
 
 const contentNodes = {

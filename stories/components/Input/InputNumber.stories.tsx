@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { ContentProvider, InputNumber } from "../../src";
+import { ContentProvider, InputNumber } from "../../../src";
 
 import markdown from "./InputNumber.md";
 

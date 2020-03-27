@@ -6,5 +6,5 @@ export * from "./Input/RadioCards";
 export * from "./Input/Input";
 export * from "./Input/InputNumber";
 export * from "./Carousel/Carousel";
-export * from "./InputCollection/InputCollection";
+export * from "./Input/InputCollection";
 export * from "./Input/InputFile";

@@ -3,7 +3,7 @@ import { Formik, Form } from "formik";
 import styled from "styled-components";
 
 import markdown from "./InputFile.md";
-import { ContentProvider, InputFile } from "../../src";
+import { ContentProvider, InputFile } from "../../../src";
 
 export default {
   title: "Components/Input"
