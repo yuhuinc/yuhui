@@ -1,9 +1,10 @@
 {
   "name": "@yuhuinc/yuhui",
-  "version": "0.1.12",
+  "version": "0.1.12-rc.1",
   "main": "dist/index.js",
   "scripts": {
     "build": "rm -rf dist/ && tsc",
+    "postbuild": "cpy 'static/**/*' ../dist/ --cwd=src/ --no-overwrite --parents",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook --output-dir docs",
     "deploy-storybook": "storybook-to-ghpages",
@@ -38,6 +39,7 @@
     "@types/react-dom": "^16.9.5",
     "babel-loader": "^8.0.6",
     "babel-preset-react-app": "^9.1.0",
+    "cpy-cli": "^3.1.0",
     "formik": "^2.1.4",
     "husky": "3.1.0",
     "pretty-quick": "^2.0.1",
