@@ -6,7 +6,6 @@ import { useContent, WithContentProps } from "../Content/Content";
 import { AiOutlineClose } from "react-icons/ai";
 import fileDropIcon from "./file-drop.png";
 import { colors } from "../shared/constants";
-import { SpawnSyncOptionsWithStringEncoding } from "child_process";
 
 const StyledOuterContainer = styled.div``;
 
@@ -88,9 +87,14 @@ const StyledError = styled.div`
 `;
 
 export interface FileCollectionProps extends WithContentProps {
-  acceptedFiles: string;
-  rejectFileError: string;
-  maxSize: number;
+  newFiles: any;
+  onChange: any;
+  onDropVerbiage: string;
+  dropFileVeriage: string;
+  browseVerbiage: string;
+  acceptedFiles?: string;
+  rejectFileError?: string;
+  maxSize?: number;
   [key: string]: any;
 }
 
@@ -106,7 +110,7 @@ export const FileCollection: FileCollection = ({
   browseVerbiage,
   acceptedFiles,
   rejectFileError,
-  maxSize,
+  maxSize = 15000000,
   ...rest
 }) => {
   const { theme } = useContent();
