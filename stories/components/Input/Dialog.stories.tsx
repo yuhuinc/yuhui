@@ -5,7 +5,7 @@ import {
   useDialog,
   ButtonPrimary,
   P
-} from "../../src";
+} from "../../../src";
 
 export default {
   title: "Components/Dialog"

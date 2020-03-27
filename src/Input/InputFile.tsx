@@ -86,7 +86,7 @@ const StyledError = styled.div`
   padding-left: 17px;
 `;
 
-export interface FileCollectionProps extends WithContentProps {
+export interface InputFileProps extends WithContentProps {
   newFiles: any;
   onChange: any;
   onDropVerbiage: string;
@@ -98,9 +98,9 @@ export interface FileCollectionProps extends WithContentProps {
   [key: string]: any;
 }
 
-export type FileCollection = React.ComponentType<FileCollectionProps>;
+export type InputFile = React.ComponentType<InputFileProps>;
 
-export const FileCollection: FileCollection = ({
+export const InputFile: InputFile = ({
   contentKey,
   newFiles,
   data,

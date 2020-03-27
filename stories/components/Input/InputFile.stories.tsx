@@ -1,14 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { Formik, Form } from "formik";
-import * as Yup from "yup";
 import styled from "styled-components";
 
-import markdown from "./FileCollection.md";
-import { ContentProvider, FileCollection } from "../../../src";
-import { Input, InputCollection } from "../../../src";
+import markdown from "./InputFile.md";
+import { ContentProvider, InputFile } from "../../../src";
 
 export default {
-  title: "Components/FileCollection"
+  title: "Components/Input"
 };
 
 const StyledError = styled.div`
@@ -48,12 +46,6 @@ const content = {
   theme
 };
 
-const FileCollectionSchema = Yup.object().shape({
-  company_names: Yup.array()
-    .required("cannot be empty array")
-    .of(Yup.string().required("required"))
-});
-
 const uploadedFiles = [
   {
     name: "file1.txt",
@@ -69,22 +61,20 @@ const uploadedFiles = [
   }
 ];
 
-export const FileCollections = () => {
-  const fileCollectionValid = values =>
+export const InputFiles = () => {
+  const inputFileValid = values =>
     values.files.length > 0 ||
     values.uploadedFiles.some(file => file.keep === true);
 
   return (
     <ContentProvider lang="en" content={content}>
       <Formik
-        validationSchema={FileCollectionSchema}
         initialValues={{
           files: [],
-          uploadedFiles: uploadedFiles,
-          company_names: []
+          uploadedFiles: uploadedFiles
         }}
         onSubmit={values => {
-          if (!fileCollectionValid(values)) {
+          if (!inputFileValid(values)) {
             return;
           }
           console.log(values);
@@ -92,16 +82,7 @@ export const FileCollections = () => {
       >
         {({ values, setFieldValue, errors }) => (
           <Form>
-            <InputCollection
-              type="text"
-              contentKey="demo.placeholder"
-              addVerbiage="Add additional input"
-              onChange={(e, index, newValues) => {
-                setFieldValue("company_names", newValues);
-              }}
-              errors={errors.company_names}
-            />
-            <FileCollection
+            <InputFile
               newFiles={values.files}
               data={values.uploadedFiles}
               onChange={(newValues, uploadedValues) => {
@@ -116,7 +97,7 @@ export const FileCollections = () => {
               acceptedFiles="application/pdf, image/*, text/plain, .zip, .doc"
               maxSize={10000000}
             />
-            {!fileCollectionValid(values) && (
+            {!inputFileValid(values) && (
               <StyledError>Please uploaded atleast one file</StyledError>
             )}
             <div style={{ marginTop: "50px" }}>
@@ -135,7 +116,7 @@ export const FileCollections = () => {
   );
 };
 
-FileCollections.story = {
+InputFiles.story = {
   parameters: {
     notes: { markdown }
   }

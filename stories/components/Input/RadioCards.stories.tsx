@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik, Form } from "formik";
 
-import { ContentProvider, RadioCards, RadioCard } from "../../src";
+import { ContentProvider, RadioCards, RadioCard } from "../../../src";
 
 export default {
   title: "Components/Input"

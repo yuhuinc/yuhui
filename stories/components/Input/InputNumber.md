@@ -1,14 +1,14 @@
-# NumberInput
+# InputNumber
 
 **Available components**:
 
-- [NumberInput](#numberinput)
+- [InputNumber](#inputnumber)
 
 **How it is built**
 
 - The input is stateless. It will render the provided value and uses callback to update value on button press / input change via keyboard, etc.
 
-## NumberInput
+## InputNumber
 
 Takes a value to render inside the input and a callback to update the value in the parent.
 
@@ -29,7 +29,7 @@ Takes a value to render inside the input and a callback to update the value in t
 ### Example
 
 ```javascript
-const NumberInputs = () => {
+const InputNumbers = () => {
   const [value, setValue] = useState("0");
 
   const setNewValue = newValue => {
@@ -38,7 +38,7 @@ const NumberInputs = () => {
     }
   };
   return (
-    <NumberInput title="Applicants" value={value} callback={setNewValue} />
+    <InputNumber title="Applicants" value={value} callback={setNewValue} />
   );
 };
 ```
