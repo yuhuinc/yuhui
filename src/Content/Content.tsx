@@ -121,6 +121,12 @@ export const useContent = (): ContentContext => {
   return useContext(ContentContext);
 };
 
+export const useCopy = (contentKey: string) => {
+  const { lang, contentNodes } = useContent();
+  const copy = contentNodes[contentKey].copy[lang];
+  return copy;
+};
+
 const baseTextStyles = css`
   ${props =>
     props.centered &&

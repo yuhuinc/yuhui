@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { Formik, Field } from "formik";
 import { ContentProvider, InputNumber } from "../../../src";
 
 import markdown from "./InputNumber.md";
@@ -9,10 +10,16 @@ export default {
 };
 
 const contentNodes = {
-  "demo.placeholder": {
+  "demo.title1": {
     copy: {
-      en: "placeholder value",
-      fr: "placeholder value"
+      en: "Applicants",
+      fr: "Candidats"
+    }
+  },
+  "demo.title2": {
+    copy: {
+      en: "A long title that should be cut off",
+      fr: "Un titre long à couper oui"
     }
   }
 };
@@ -32,7 +39,9 @@ const content = {
 };
 
 const StyledContainer = styled.div`
+  padding: 10rem;
   width: 300px;
+  background-color: #eee;
 `;
 
 export const NumberInputs = () => {
@@ -43,16 +52,39 @@ export const NumberInputs = () => {
       setValue(newValue);
     }
   };
+
   return (
     <StyledContainer>
       <ContentProvider lang="en" content={content}>
-        <InputNumber
-          title="Applicants"
-          value={value}
-          callback={setNewValue}
-          min={5}
-          max={25}
-        />
+        <Formik
+          initialValues={{
+            one: 5,
+            two: 1
+          }}
+          onSubmit={values => console.log(values)}
+        >
+          {({ values, setFieldValue }) => (
+            <>
+              <InputNumber
+                contentKey="demo.title1"
+                name="one"
+                value={values.one}
+                callback={val => setFieldValue("one", val)}
+                min={5}
+                max={25}
+              />
+              <InputNumber
+                contentKey="demo.title2"
+                name="two"
+                value={values.two}
+                callback={val => setFieldValue("two", val)}
+                min={1}
+                max={10}
+              />
+              <div>{JSON.stringify(values)}</div>
+            </>
+          )}
+        </Formik>
       </ContentProvider>
     </StyledContainer>
   );
