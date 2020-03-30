@@ -3,7 +3,7 @@ import { Button } from "reakit/Button";
 import styled from "styled-components";
 
 import { useContent } from "../Content/Content";
-import { styleValues } from "../shared/constants";
+import { styleValues, colors } from "../shared/constants";
 
 interface RadioCardsProps {
   name: string;
@@ -26,11 +26,11 @@ interface RadioContext {
 const StyledCard = styled(Button)`
   box-shadow: ${styleValues.bowShadow};
   background-color: ${props =>
-    props.selected ? props.theme.colors.primary.light : "#fff"};
+    props.selected ? props.theme?.colors?.primary?.light : colors.WHITE};
   border-width: 2px;
   border-style: solid;
   border-color: ${props =>
-    props.selected ? props.theme.colors.primary.dark : "transparent"};
+    props.selected ? props.theme?.colors?.primary?.dark : "transparent"};
   border-radius: 16px;
   padding: 16px;
   margin-top: 8px;
