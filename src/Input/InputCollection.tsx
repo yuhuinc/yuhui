@@ -22,19 +22,19 @@ const StyledInner = styled.div`
 const StyledInput = styled.input`
   border: 1px solid;
   border-color: ${props =>
-    props.theme.colors.primary.medium || colors.LIGHT_PERIWINKLE};
+    props.theme?.colors?.primary?.medium || colors.LIGHT_PERIWINKLE};
   border-radius: 7px;
   width: 95%;
   height: 40px;
   padding-left: 16px;
   font-size: 1rem;
   &::placeholder {
-    color: ${props => props.theme.colors.primary.light || colors.LIGHT_GRAY};
+    color: ${props => props.theme?.colors?.primary?.light || colors.LIGHT_GRAY};
   }
   &:focus {
     outline: none;
     border-color: ${props =>
-      props.theme.colors.highlight.medium || colors.ULTRAMARINE_BLUE};
+      props.theme?.colors?.highlight?.medium || colors.ULTRAMARINE_BLUE};
   }
 `;
 
@@ -42,19 +42,19 @@ const StyledAddButton = styled.button`
   display: flex;
   border: 1px solid;
   border-color: ${props =>
-    props.theme.colors.primary.medium || colors.LIGHT_PERIWINKLE};
+    props.theme?.colors?.primary?.medium || colors.LIGHT_PERIWINKLE};
   background-color: ${props =>
-    props.theme.colors.primary.light || colors.LIGHT_GRAY};
+    props.theme?.colors?.primary?.light || colors.LIGHT_GRAY};
   width: 95%;
   height: 40px;
   text-align: left;
   font-size: 16px;
-  color: ${props => props.theme.colors.primary.label || colors.LABEL_GRAY};
+  color: ${props => props.theme?.colors?.primary?.label || colors.LABEL_GRAY};
   border-radius: 7px;
   &:focus {
     outline: none;
     border-color: ${props =>
-      props.theme.colors.highlight.medium || colors.ULTRAMARINE_BLUE};
+      props.theme?.colors?.highlight?.medium || colors.ULTRAMARINE_BLUE};
   }
 `;
 
@@ -66,7 +66,8 @@ const StyledRemoveButton = styled.button`
   &:focus {
     outline: none;
     border: 1px solid
-      ${props => props.theme.colors.highlight.medium || colors.ULTRAMARINE_BLUE};
+      ${props =>
+        props.theme?.colors?.highlight?.medium || colors.ULTRAMARINE_BLUE};
   }
 `;
 
