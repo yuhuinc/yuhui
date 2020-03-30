@@ -37,6 +37,9 @@ const theme = {
     },
     highlight: {
       medium: "#230cc2"
+    },
+    background: {
+      light: "#ffffff"
     }
   }
 };
