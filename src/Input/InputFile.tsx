@@ -15,23 +15,15 @@ const StyledContainer = styled.div`
   align-items: center;
   border: ${props =>
     props.isDragActive
-      ? props.theme.colors
-        ? `1px solid ${props.theme.colors.primary.light}`
-        : `1px solid ${colors.LIGHT_BLUE}`
-      : props.theme.colors
-      ? `1px dashed ${props.theme.colors.primary.medium}`
-      : `1px dashed ${colors.GRAY}`};
+      ? `1px solid ${props.theme?.colors?.primary?.light || colors.LIGHT_BLUE}`
+      : `1px dashed ${props.theme?.colors?.primary?.medium || colors.GRAY}`};
   border-radius: 20px;
   margin: 10px 0px;
   justify-content: ${props => (props.isDragActive ? "center" : "auto")};
   background-color: ${props =>
     props.isDragActive
-      ? props.theme.colors
-        ? props.theme.colors.primary.light
-        : colors.LIGHT_BLUE
-      : props.theme.colors
-      ? props.theme.colors.background.light
-      : colors.WHITE};
+      ? props.theme?.colors?.primary?.light || colors.LIGHT_BLUE
+      : props.theme?.colors?.background?.light || colors.WHITE};
 `;
 
 const StyledDropzoneText = styled.p`
@@ -50,19 +42,12 @@ const StyledDropHereText = styled.span`
   align-items: center;
   color: ${props =>
     props.isDragActive
-      ? props.theme.colors
-        ? props.theme.colors.secondary.medium
-        : colors.PURE_BLUE
-      : props.theme.colors
-      ? props.theme.colors.primary.dark
-      : colors.SLATE_GREY};
+      ? props.theme?.colors?.secondary?.medium || colors.PURE_BLUE
+      : props.theme?.colors?.primary?.dark || colors.SLATE_GREY};
 `;
 
 const StyledBrowseFileText = styled.span`
-  color: ${props =>
-    props.theme.colors
-      ? props.theme.colors.secondary.medium
-      : colors.PURE_BLUE};
+  color: ${props => props.theme?.colors?.secondary?.medium || colors.PURE_BLUE};
 `;
 
 const StyledFileContainer = styled.div`
@@ -86,8 +71,7 @@ const StyledRemoveButton = styled.button`
   border: none;
   font-size: 20px;
   background-color: transparent;
-  color: ${props =>
-    props.theme.colors ? props.theme.colors.primary.dark : colors.PURE_BLUE};
+  color: ${props => props.theme?.colors?.primary?.dark || colors.PURE_BLUE};
 `;
 
 const StyledDropIcon = styled.img`
