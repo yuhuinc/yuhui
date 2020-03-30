@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useContent, useCopy } from "../Content/Content";
-import { colors } from "src/shared/constants";
+import { colors } from "../shared/constants";
 
 const StyledInput = styled.input`
   width: ${props => props.width || "100%"};
