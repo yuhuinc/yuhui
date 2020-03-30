@@ -97,20 +97,19 @@ export const withContent = <P extends object>(
 ) =>
   forwardRef(
     (
-      { style, contentKey, contentParams = {}, render, children, ...rest }: any,
+      { style, contentKey, copyParams = {}, render, children, ...rest }: any,
       ref
     ) => {
-      const { lang, contentNodes, theme } = useContext(ContentContext);
-      const { copy } = contentNodes[contentKey];
-      const copyToRender = interpolate(copy[lang], contentParams);
+      const { contentNodes, theme } = useContext(ContentContext);
+      const copy = useCopy(contentKey, copyParams);
       return (
         <WrappedComponent
           ref={ref}
-          style={{ ...contentNodes[contentKey].style, ...style }}
+          style={{ ...contentNodes?.[contentKey]?.style, ...style }}
           theme={theme}
           {...rest}
         >
-          {render ? render(copyToRender) : copyToRender}
+          {render ? render(copy) : copy}
           {children}
         </WrappedComponent>
       );
@@ -121,10 +120,16 @@ export const useContent = (): ContentContext => {
   return useContext(ContentContext);
 };
 
-export const useCopy = (contentKey: string) => {
+export const useCopy = (contentKey: string, copyParams?) => {
   const { lang, contentNodes } = useContent();
-  const copy = contentNodes[contentKey].copy[lang];
-  return copy;
+  const copy = contentNodes?.[contentKey]?.copy?.[lang];
+  if (!copy) {
+    return `MISSING translations for: ${contentKey}`;
+  } else if (copyParams) {
+    return interpolate(copy, copyParams);
+  } else {
+    return copy;
+  }
 };
 
 const baseTextStyles = css`

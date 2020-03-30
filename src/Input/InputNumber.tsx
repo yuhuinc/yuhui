@@ -117,6 +117,7 @@ export const InputNumber = ({
       <StyledTitle>{label}</StyledTitle>
       <StyledInputGroup>
         <StyledButton
+          type="button"
           onClick={handleDecrement}
           disabled={parseInt(value as string, 10) <= min}
         >
@@ -135,6 +136,7 @@ export const InputNumber = ({
           {...rest}
         />
         <StyledButton
+          type="button"
           onClick={handleIncrement}
           disabled={parseInt(value as string, 10) >= max}
         >

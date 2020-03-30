@@ -43,7 +43,7 @@ const StyledDropHereText = styled.span`
   color: ${props =>
     props.isDragActive
       ? props.theme?.colors?.secondary?.medium || colors.PURE_BLUE
-      : props.theme?.colors?.primary?.dark || colors.SLATE_GREY};
+      : props.theme?.colors?.grey?.dark || colors.SLATE_GREY};
 `;
 
 const StyledBrowseFileText = styled.span`

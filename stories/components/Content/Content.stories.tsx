@@ -1,7 +1,7 @@
 import React from "react";
 
 import markdown from "./Content.md";
-import { ContentProvider, H1 } from "../../../src";
+import { ContentProvider, H1, H2, P } from "../../../src";
 
 export default {
   title: "Components/Content"
@@ -12,6 +12,12 @@ const contentNodes = {
     copy: {
       en: 'View docs by clicking "Notes"',
       fr: 'View docs by clicking "Notes"'
+    }
+  },
+  "demo.H2": {
+    copy: {
+      en: "Hi, ${name}",
+      fr: "Bonjour, ${name}"
     }
   }
 };
@@ -32,8 +38,10 @@ const content = {
 
 export const Content = () => {
   return (
-    <ContentProvider lang="fr" content={content}>
+    <ContentProvider lang="en" content={content}>
       <H1 contentKey="demo.H1" />
+      <H2 contentKey="demo.H2" copyParams={{ name: "Jane" }} />
+      <P contentKey="demo.not_found" />
     </ContentProvider>
   );
 };

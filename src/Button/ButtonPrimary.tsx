@@ -9,11 +9,11 @@ const StyledButton = styled.button`
   color: ${props =>
     props.disabled
       ? colors.BATTLESHIP_GREY
-      : props.themeObj.colors.primary.dark};
+      : props.theme?.colors?.primary?.dark || colors.PURE_BLUE};
   background-color: ${props =>
     props.disabled
       ? colors.DISABLED_GRAY
-      : props.themeObj.colors.primary.light};
+      : props.theme?.colors?.primary?.light || colors.BLUEY_GREY};
   line-height: 36px;
   height: 36px;
   font-size: 14px;
@@ -28,7 +28,7 @@ const StyledButton = styled.button`
 export const ButtonPrimary = withContent(
   ({ children, theme, ...rest }: ButtonProps) => {
     return (
-      <StyledButton {...rest} themeObj={theme}>
+      <StyledButton {...rest} theme={theme}>
         {children}
       </StyledButton>
     );
