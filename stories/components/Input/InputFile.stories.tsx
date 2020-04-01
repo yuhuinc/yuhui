@@ -51,12 +51,14 @@ const content = {
 
 const uploadedFiles = [
   {
+    id: 1,
     name: "file1.txt",
     src: "https://www.google.ca",
     file_type: "text/plain",
     keep: true
   },
   {
+    id: 2,
     name: "file1.txt",
     src: "https://www.google.ca",
     file_type: "text/plain",

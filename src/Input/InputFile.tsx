@@ -34,6 +34,9 @@ const StyledDropzoneText = styled.p`
   justify-content: ${props => (props.filesUploaded ? "space-between" : "auto")};
   line-height: 25px;
   margin: 10px 20px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 `;
 
 const StyledDropHereText = styled.span`
@@ -44,10 +47,26 @@ const StyledDropHereText = styled.span`
     props.isDragActive
       ? props.theme?.colors?.secondary?.medium || colors.PURE_BLUE
       : props.theme?.colors?.grey?.dark || colors.SLATE_GREY};
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  margin-right: 10px;
+`;
+
+const StyledSpan = styled.span`
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  margin-right: 10px;
+  display: inline-block;
 `;
 
 const StyledBrowseFileText = styled.span`
   color: ${props => props.theme?.colors?.secondary?.medium || colors.PURE_BLUE};
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  margin-right: 10px;
 `;
 
 const StyledFileContainer = styled.div`
@@ -64,10 +83,13 @@ const StyledFileContainer = styled.div`
 const StyledFileNames = styled.a`
   color: #65666d;
   text-decoration: none !important;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 `;
 
 const StyledRemoveButton = styled.button`
-  width: 5%;
+  padding-top: 4px;
   border: none;
   font-size: 20px;
   background-color: transparent;
@@ -173,44 +195,6 @@ export const InputFile: InputFile = ({
 
   return (
     <StyledOuterContainer theme={theme} {...rest}>
-      {files.map(file => (
-        <StyledFileContainer theme={theme}>
-          <StyledFileNames
-            href={file.src}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {file.name}
-          </StyledFileNames>
-          <StyledRemoveButton
-            type="button"
-            onClick={removeFile(file)}
-            theme={theme}
-          >
-            <AiOutlineClose />
-          </StyledRemoveButton>
-        </StyledFileContainer>
-      ))}
-      {uploadedFiles.map(file =>
-        file.keep === false ? null : (
-          <StyledFileContainer theme={theme}>
-            <StyledFileNames
-              href={file.src}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {file.name}
-            </StyledFileNames>
-            <StyledRemoveButton
-              type="button"
-              onClick={removeUploadedFiles(file)}
-              theme={theme}
-            >
-              <AiOutlineClose />
-            </StyledRemoveButton>
-          </StyledFileContainer>
-        )
-      )}
       <StyledContainer
         {...getRootProps({ isDragActive })}
         theme={theme}
@@ -225,7 +209,7 @@ export const InputFile: InputFile = ({
           <StyledDropzoneText theme={theme} filesUploaded={filesUploaded}>
             <StyledDropHereText theme={theme} filesUploaded={filesUploaded}>
               <StyledDropIcon src={fileDropIcon} />
-              {dropFileVeriage}
+              <StyledSpan>{dropFileVeriage}</StyledSpan>
             </StyledDropHereText>
             <StyledBrowseFileText theme={theme}>
               {browseVerbiage}
@@ -233,6 +217,48 @@ export const InputFile: InputFile = ({
           </StyledDropzoneText>
         )}
       </StyledContainer>
+      {files.map(file => (
+        <StyledFileContainer theme={theme} key={`uploaded-file-btn-${file.id}`}>
+          <StyledFileNames
+            key={`uploaded-file-name-${file.id}`}
+            href={file.src}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {file.name}
+          </StyledFileNames>
+          <StyledRemoveButton
+            key={`uploaded-file-remove-${file.id}`}
+            type="button"
+            onClick={removeFile(file)}
+            theme={theme}
+          >
+            <AiOutlineClose />
+          </StyledRemoveButton>
+        </StyledFileContainer>
+      ))}
+      {uploadedFiles.map(file =>
+        file.keep === false ? null : (
+          <StyledFileContainer theme={theme} key={`file-btn-${file.id}`}>
+            <StyledFileNames
+              key={`file-name-${file.id}`}
+              href={file.src}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {file.name}
+            </StyledFileNames>
+            <StyledRemoveButton
+              key={`file-remove-btn-${file.id}`}
+              type="button"
+              onClick={removeUploadedFiles(file)}
+              theme={theme}
+            >
+              <AiOutlineClose />
+            </StyledRemoveButton>
+          </StyledFileContainer>
+        )
+      )}
       {rejectedFiles.length > 0 && <StyledError>{rejectFileError}</StyledError>}
     </StyledOuterContainer>
   );
