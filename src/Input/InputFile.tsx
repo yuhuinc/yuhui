@@ -128,7 +128,7 @@ export const InputFile: InputFile = ({
   data,
   onChange,
   onDropVerbiage,
-  dropFileVeriage,
+  dropFileVerbiage,
   browseVerbiage,
   acceptedFiles,
   rejectFileError,
@@ -209,7 +209,7 @@ export const InputFile: InputFile = ({
           <StyledDropzoneText theme={theme} filesUploaded={filesUploaded}>
             <StyledDropHereText theme={theme} filesUploaded={filesUploaded}>
               <StyledDropIcon src={fileDropIcon} />
-              <StyledSpan>{dropFileVeriage}</StyledSpan>
+              <StyledSpan>{dropFileVerbiage}</StyledSpan>
             </StyledDropHereText>
             <StyledBrowseFileText theme={theme}>
               {browseVerbiage}

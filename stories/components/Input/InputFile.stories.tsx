@@ -96,7 +96,7 @@ export const InputFiles = () => {
               }}
               contentKey="demo.placeholder" // not used in component
               onDropVerbiage="Drop file here"
-              dropFileVeriage="Drag and drop files here"
+              dropFileVerbiage="Drag and drop files here"
               browseVerbiage="Or browse files"
               rejectFileError="Cannot accept that file"
               acceptedFiles="application/pdf, image/*, text/plain, .zip, .doc"
