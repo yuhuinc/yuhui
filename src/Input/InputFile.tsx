@@ -112,7 +112,7 @@ export interface InputFileProps extends WithContentProps {
   newFiles: any;
   onChange: any;
   onDropVerbiage: string;
-  dropFileVeriage: string;
+  dropFileVerbiage: string;
   browseVerbiage: string;
   acceptedFiles?: string;
   rejectFileError?: string;
