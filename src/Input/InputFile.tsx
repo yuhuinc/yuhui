@@ -24,6 +24,7 @@ const StyledContainer = styled.div`
     props.isDragActive
       ? props.theme?.colors?.primary?.light || colors.LIGHT_BLUE
       : props.theme?.colors?.background?.light || colors.WHITE};
+  cursor: pointer;
 `;
 
 const StyledDropzoneText = styled.p`
@@ -89,7 +90,9 @@ const StyledFileNames = styled.a`
 `;
 
 const StyledRemoveButton = styled.button`
-  padding-top: 4px;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
   border: none;
   font-size: 20px;
   background-color: transparent;

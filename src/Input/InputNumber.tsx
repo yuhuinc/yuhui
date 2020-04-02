@@ -27,6 +27,7 @@ const StyledTitle = styled.div`
 const StyledInputGroup = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
 `;
 
 const StyledInput = styled.input`
