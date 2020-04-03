@@ -55,6 +55,7 @@ const StyledDropHereText = styled.span`
 `;
 
 const StyledSpan = styled.span`
+  max-width: 150px;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -63,6 +64,7 @@ const StyledSpan = styled.span`
 `;
 
 const StyledBrowseFileText = styled.span`
+  max-width: 80px;
   color: ${props => props.theme?.colors?.secondary?.medium || colors.PURE_BLUE};
   white-space: nowrap;
   text-overflow: ellipsis;
