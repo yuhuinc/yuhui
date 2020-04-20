@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`content renders English copy 1`] = `
+<div>
+  <button
+    theme="[object Object]"
+    type="button"
+  >
+    snapshot
+  </button>
+</div>
+`;
+
+exports[`content renders French copy 1`] = `
+<div>
+  <button
+    theme="[object Object]"
+    type="button"
+  >
+    snapshot
+  </button>
+</div>
+`;
