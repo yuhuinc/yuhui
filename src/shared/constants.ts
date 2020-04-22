@@ -21,7 +21,6 @@ export const colors = {
   LIGHT_ORANGE: "#ff7600",
   PURPLE: "#81008d",
   LABEL_GRAY: "#b5b5b5",
-  BACKDROP_GRAY: "#b2b2b2",
   BODY_GRAY: "#f7f7f7",
   FADE_GRAY: "#888888",
   LIGHTEST_GRAY: "#fbfbfb",
