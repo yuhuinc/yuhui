@@ -22,6 +22,16 @@ $ yarn add @yuhui/yuhui
 $ yarn storybook
 ```
 
+### Running tests
+
+```bash
+$ yarn test
+```
+
+```bash
+$ yarn watch
+```
+
 ## Resources
 
 - [A11Y Style Guide](https://a11y-style-guide.com/style-guide/)

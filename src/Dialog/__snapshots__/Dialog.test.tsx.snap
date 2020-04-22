@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DialogCentreScreen content renders English copy 1`] = `<div />`;
+
+exports[`DialogCentreScreen content renders French copy 1`] = `<div />`;

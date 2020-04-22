@@ -1,10 +1,16 @@
 import React from "react";
 import styled from "styled-components";
-import { useDialogState, Dialog, DialogBackdrop } from "reakit/Dialog";
+import {
+  useDialogState,
+  Dialog,
+  DialogBackdrop,
+  DialogOptions
+} from "reakit/Dialog";
 import { colors } from "../shared/constants";
 
 interface DialogProps {
   label: string;
+  dialog?: DialogOptions;
   [key: string]: any;
 }
 
@@ -48,6 +54,7 @@ export const DialogCentreScreen = ({
   children,
   dialog
 }: DialogProps) => {
+  dialog = dialog || useDialogState();
   return (
     <StyledBackdrop {...dialog}>
       <StyledDialog {...dialog} aria-label={label}>
