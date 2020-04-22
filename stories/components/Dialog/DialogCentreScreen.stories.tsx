@@ -52,8 +52,8 @@ const Dialog = () => {
   return (
     <div>
       <ButtonPrimary contentKey="demo.Button" onClick={dialog.toggle} />
-      <DialogCentreScreen label="Hello" {...dialog}>
-        <P contentKey="demo.P" centered />
+      <DialogCentreScreen dialog={dialog} label="Hello">
+        <P contentKey="demo.P" />
       </DialogCentreScreen>
     </div>
   );

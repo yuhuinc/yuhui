@@ -25,6 +25,8 @@ A centred white modal box surrounded by a light-grey coloured background.
 ### Example
 
 ```javascript
+import { useDialog } from "reakit/Dialog";
+
 const Dialog = () => {
   const dialog = useDialog();
   return (
@@ -54,6 +56,8 @@ A light-grey coloured background that takes up the full screen.
 ### Example
 
 ```javascript
+import { useDialog } from "reakit/Dialog";
+
 const Dialog = () => {
   const dialog = useDialog();
   return (
