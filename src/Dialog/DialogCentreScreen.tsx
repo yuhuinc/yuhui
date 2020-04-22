@@ -61,5 +61,3 @@ export const DialogCentreScreen = ({
     </StyledBackdrop>
   );
 };
-
-export const useDialog = useDialogState;
