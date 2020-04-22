@@ -2,6 +2,7 @@ export * from "./Button/Button";
 export * from "./Button/ButtonPrimary";
 export * from "./Content/Content";
 export * from "./Dialog/DialogFullScreen";
+export * from "./Dialog/DialogCentreScreen";
 export * from "./Input/RadioCards";
 export * from "./Input/Input";
 export * from "./Input/InputNumber";

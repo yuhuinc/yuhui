@@ -1,11 +1,12 @@
 import React from "react";
 import {
   ContentProvider,
-  DialogFullScreen,
+  DialogCentreScreen,
   useDialog,
   ButtonPrimary,
   P
 } from "../../../src";
+import markdown from "./Dialog.md";
 
 export default {
   title: "Components/Dialog"
@@ -14,8 +15,8 @@ export default {
 const contentNodes = {
   "demo.Button": {
     copy: {
-      en: "Toggle Dialog",
-      fr: "Toggle Dialog"
+      en: "Toggle dialog",
+      fr: "Basculer la boîte de dialogue"
     }
   },
   "demo.P": {
@@ -40,20 +41,26 @@ const content = {
   theme
 };
 
-export const FullscreenDialog = () => (
+export const CentreScreenDialog = () => (
   <ContentProvider lang="en" content={content}>
-    <Dialogs />
+    <Dialog />
   </ContentProvider>
 );
 
-const Dialogs = () => {
+const Dialog = () => {
   const dialog = useDialog();
   return (
     <div>
       <ButtonPrimary contentKey="demo.Button" onClick={dialog.toggle} />
-      <DialogFullScreen label="Hello" {...dialog}>
-        <P contentKey="demo.P" centered />
-      </DialogFullScreen>
+      <DialogCentreScreen dialog={dialog} label="Hello">
+        <P contentKey="demo.P" />
+      </DialogCentreScreen>
     </div>
   );
+};
+
+CentreScreenDialog.story = {
+  parameters: {
+    notes: { markdown }
+  }
 };
