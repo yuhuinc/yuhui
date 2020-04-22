@@ -50,12 +50,13 @@ const StyledDialog = styled(Dialog)`
 export const DialogCentreScreen = ({
   label,
   children,
-  dialog
+  dialog,
+  ...rest
 }: DialogProps) => {
   dialog = dialog || useDialogState();
   return (
     <StyledBackdrop {...dialog}>
-      <StyledDialog {...dialog} aria-label={label}>
+      <StyledDialog {...dialog} aria-label={label} {...rest}>
         {children}
       </StyledDialog>
     </StyledBackdrop>
