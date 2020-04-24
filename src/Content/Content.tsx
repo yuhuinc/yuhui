@@ -1,4 +1,4 @@
-import React, { createContext, forwardRef, useContext, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 import styled, { css } from "styled-components";
 
 export const ContentContext = createContext<ContentContext>({
@@ -88,33 +88,35 @@ export function interpolate(string, params) {
 
 export interface WithContentProps {
   contentKey: string;
-  contentParams?: any;
+  copyParams?: any;
   style?: any;
+  render?: any;
+  [key: string]: any;
 }
 
-export const withContent = <P extends object>(
-  WrappedComponent: React.ComponentType<P>
-) =>
-  forwardRef(
-    (
-      { style, contentKey, copyParams = {}, render, children, ...rest }: any,
-      ref
-    ) => {
-      const { contentNodes, theme } = useContext(ContentContext);
-      const copy = useCopy(contentKey, copyParams);
-      return (
-        <WrappedComponent
-          ref={ref}
-          style={{ ...contentNodes?.[contentKey]?.style, ...style }}
-          theme={theme}
-          {...rest}
-        >
-          {render ? render(copy) : copy}
-          {children}
-        </WrappedComponent>
-      );
-    }
+export const withContent = (WrappedComponent: React.ComponentType<any>) => ({
+  style,
+  contentKey,
+  copyParams = {},
+  render,
+  children,
+  ...rest
+}: WithContentProps) => {
+  const { contentNodes, theme } = useContext(ContentContext);
+  const copy = useCopy(contentKey, copyParams);
+  return (
+    <WrappedComponent
+      style={{ ...contentNodes?.[contentKey]?.style, ...style }}
+      theme={theme}
+      {...rest}
+    >
+      <>
+        {render ? render(copy) : copy}
+        {children}
+      </>
+    </WrappedComponent>
   );
+};
 
 export const useContent = (): ContentContext => {
   return useContext(ContentContext);
