@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { Formik, Form, Field } from "formik";
 import styled from "styled-components";
 import {
   useDialog,
   DialogCentreScreen,
   ContentProvider,
+  Button,
   ButtonPrimary,
-  H1
+  P
 } from "../../src";
 
 export default {
@@ -20,10 +20,22 @@ const contentNodes = {
       fr: "Toggle Dialog"
     }
   },
-  "demo.H1": {
+  "demo.confirmationP": {
     copy: {
-      en: "Hello!",
-      fr: "Bonjour!"
+      en: "Are you sure?",
+      fr: "Êtes-vous sûr?"
+    }
+  },
+  "demo.yesButton": {
+    copy: {
+      en: "Yes",
+      fr: "Oui"
+    }
+  },
+  "demo.noButton": {
+    copy: {
+      en: "No",
+      fr: "Non"
     }
   }
 };
@@ -37,27 +49,58 @@ const theme = {
   }
 };
 
+const StyledButtonContainer = styled.div`
+  display: flex;
+`;
+
 const content = {
   contentNodes,
   theme
 };
 
 export const ConfirmationDialogDemo = () => {
+  const [confirmed, setConfirmed] = useState(false);
+
+  const handleConfirmation = userHasConfirmed => {
+    setConfirmed(userHasConfirmed);
+  };
+
   return (
     <ContentProvider lang="en" content={content}>
-      <ConfirmationDialog />
+      <ConfirmationDialog handleConfirmation={handleConfirmation}>
+        <P contentKey="demo.confirmationP" />
+      </ConfirmationDialog>
+      <div>confirmed: {`${confirmed}`}</div>
     </ContentProvider>
   );
 };
 
-const ConfirmationDialog = () => {
+const ConfirmationDialog = ({ handleConfirmation, children }) => {
   const dialog = useDialog();
-  console.log(dialog);
+  const YES = "yes";
+  const handleClick = e => {
+    e.preventDefault();
+    handleConfirmation(e.target.dataset.confirmation === YES);
+    dialog.hide();
+  };
+
   return (
     <div>
       <ButtonPrimary contentKey="demo.ToggleButton" onClick={dialog.toggle} />
       <DialogCentreScreen label="Hello" {...dialog}>
-        <H1 contentKey="demo.H1" />
+        {children}
+        <StyledButtonContainer>
+          <Button
+            data-confirmation="no"
+            onClick={handleClick}
+            contentKey="demo.noButton"
+          />
+          <ButtonPrimary
+            data-confirmation={YES}
+            onClick={handleClick}
+            contentKey="demo.yesButton"
+          />
+        </StyledButtonContainer>
       </DialogCentreScreen>
     </div>
   );
