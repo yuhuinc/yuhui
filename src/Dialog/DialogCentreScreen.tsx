@@ -1,11 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import {
-  useDialogState,
-  Dialog,
-  DialogBackdrop,
-  DialogOptions
-} from "reakit/Dialog";
+import { Dialog, DialogBackdrop, DialogOptions } from "reakit/Dialog";
 import { colors } from "../shared/constants";
 
 interface DialogProps {
@@ -50,13 +45,22 @@ const StyledDialog = styled(Dialog)`
 export const DialogCentreScreen = ({
   label,
   children,
-  dialog,
+  baseId,
+  visible,
+  hide,
+  hideOnClickOutside,
   ...rest
 }: DialogProps) => {
-  dialog = dialog || useDialogState();
   return (
-    <StyledBackdrop {...dialog}>
-      <StyledDialog {...dialog} aria-label={label} {...rest}>
+    <StyledBackdrop baseId={baseId} visible={visible} hide={hide} {...rest}>
+      <StyledDialog
+        baseId={baseId}
+        aria-label={label}
+        visible={visible}
+        hide={hide}
+        hideOnClickOutside={hideOnClickOutside}
+        {...rest}
+      >
         {children}
       </StyledDialog>
     </StyledBackdrop>
