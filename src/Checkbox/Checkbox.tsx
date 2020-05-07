@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Checkbox as RKCheckbox } from "reakit/Checkbox";
 import { colors } from "../shared/constants";
 import styled, { css } from "styled-components";
@@ -7,6 +7,8 @@ export interface CheckboxProps {
   disabled?: boolean;
   checked?: boolean;
   toggle?: Function;
+  label?: string;
+  size?: string;
   [key: string]: any;
 }
 
@@ -14,9 +16,9 @@ export type Checkbox = React.ComponentType<CheckboxProps>;
 
 const StyledCheckBoxLabel = styled.label`
   text-align: left;
-  display: inline-block;
+  display: flex;
   vertical-align: middle;
-  padding: 25px;
+  line-height: ${props => (props.size ? props.size : "12px")};
 `;
 
 const HiddenCheckbox = styled.input.attrs({ type: "checkbox" })`
@@ -57,24 +59,46 @@ const uncheckedStyles = css`
 `;
 
 const StyledCheckBox = styled.div`
-  width: 24px;
-  height: 24px;
+  width: ${props => (props.size ? props.size : "12px")};
+  height: ${props => (props.size ? props.size : "12px")};
+  line-height: ${props => (props.size ? props.size : "12px")};
   border-radius: 4px;
   transition: all 150ms;
-  padding: 5px;
   cursor: ${props => (props.disabled ? "not-allowed" : "pointer")};
   ${props => (props.checked ? checkedStyles : uncheckedStyles)};
 `;
 
-export const Checkbox: Checkbox = ({ disabled, checked, toggle, ...props }) => {
+const StyledTextLabel = styled.div`
+  margin-left: 5px;
+  display: flex;
+  align-items: center;
+  font-size: ${props => (props.size ? props.size : "12px")};
+`;
+
+export const Checkbox: Checkbox = ({
+  disabled,
+  checked,
+  toggle,
+  label,
+  size,
+  children,
+  ...props
+}) => {
   return (
     <StyledCheckBoxLabel onChange={toggle} {...props}>
       <HiddenCheckbox checked={checked} />
-      <RKCheckbox as={StyledCheckBox} checked={checked} disabled={disabled}>
+      <RKCheckbox
+        as={StyledCheckBox}
+        checked={checked}
+        disabled={disabled}
+        size={size}
+      >
         <Icon viewBox="0 0 24 24">
           <polyline points="20 6 9 17 4 12" />
         </Icon>
       </RKCheckbox>
+      {label ? <StyledTextLabel size={size}>{label}</StyledTextLabel> : ""}
+      {children}
     </StyledCheckBoxLabel>
   );
 };

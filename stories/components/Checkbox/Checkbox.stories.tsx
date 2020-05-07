@@ -7,13 +7,13 @@ export default {
 };
 
 const contentNodes = {
-  "regularButton.H1": {
+  "regular.H1": {
     copy: {
       en: "Plain",
       fr: "Plaine"
     }
   },
-  "disabledButton.H1": {
+  "disabled.H1": {
     copy: {
       en: "Disabled",
       fr: "Désactivé"
@@ -40,9 +40,11 @@ export const _Checkbox = () => {
   const toggle = () => setChecked(!checked);
   return (
     <ContentProvider lang="en" content={content}>
-      <H1 contentKey="regularButton.H1" />
+      <H1 contentKey="regular.H1" />
       <Checkbox checked={checked} toggle={toggle} />
-      <H1 contentKey="disabledButton.H1" />
+      <H1 contentKey="disabled.H1" />
+      <Checkbox checked={checked} toggle={toggle} size="10px" label="label" />
+      <H1 contentKey="disabled.H1" />
       <Checkbox checked={true} disabled={true} />
       <Checkbox disabled={true} />
     </ContentProvider>

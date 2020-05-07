@@ -13,11 +13,13 @@ An accessible checkbox
 
 ### Props
 
-| name     | type     | default   | description                    |
-| -------- | -------- | --------- | ------------------------------ |
-| disabled | boolean  | undefined | Disables clicking the checkbox |
-| checked  | boolean  | undefined | The checkbox's checked state   |
-| toggle   | Function |           | A callback that fires onClick  |
+| name     | type     | default   | description                                              |
+| -------- | -------- | --------- | -------------------------------------------------------- |
+| disabled | boolean  | undefined | Disables clicking the checkbox                           |
+| checked  | boolean  | undefined | The checkbox's checked state                             |
+| toggle   | Function | undefined | A callback that fires onClick                            |
+| label    | string   | undefined | Optional label text for the checkbox                     |
+| size     | string   | "12px"    | The width and height value E.g. "100%", "1.5rem", "24px" |
 
 ### Examples
 
