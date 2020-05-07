@@ -16,7 +16,7 @@ export type Checkbox = React.ComponentType<CheckboxProps>;
 
 const StyledCheckBoxLabel = styled.label`
   text-align: left;
-  display: flex;
+  display: inline-flex;
   vertical-align: middle;
   line-height: ${props => (props.size ? props.size : "12px")};
 `;
@@ -61,7 +61,6 @@ const uncheckedStyles = css`
 const StyledCheckBox = styled.div`
   width: ${props => (props.size ? props.size : "12px")};
   height: ${props => (props.size ? props.size : "12px")};
-  line-height: ${props => (props.size ? props.size : "12px")};
   border-radius: 4px;
   transition: all 150ms;
   cursor: ${props => (props.disabled ? "not-allowed" : "pointer")};
@@ -70,7 +69,7 @@ const StyledCheckBox = styled.div`
 
 const StyledTextLabel = styled.div`
   margin-left: 5px;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   font-size: ${props => (props.size ? props.size : "12px")};
 `;
