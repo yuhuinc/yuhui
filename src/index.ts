@@ -1,5 +1,7 @@
 export * from "./Button/Button";
 export * from "./Button/ButtonPrimary";
+export * from "./Card/Card";
+export * from "./Card/CardWithCheckbox";
 export * from "./Checkbox/Checkbox";
 export * from "./Content/Content";
 export * from "./Dialog/DialogFullScreen";
