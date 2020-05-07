@@ -42,9 +42,14 @@ const Icon = styled.svg`
 
 const checkedStyles = css`
   background: ${props =>
-    props.theme?.colors?.primary?.blue || colors.COOL_BLUE};
+    props.disabled
+      ? colors.LABEL_GRAY
+      : props.theme?.colors?.primary?.blue || colors.COOL_BLUE};
   border: 1px solid
-    ${props => props.theme?.colors?.primary?.blue || colors.COOL_BLUE};
+    ${props =>
+      props.disabled
+        ? colors.LABEL_GRAY
+        : props.theme?.colors?.primary?.blue || colors.COOL_BLUE};
   ${Icon} {
     visibility: visible;
   }
