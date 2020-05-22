@@ -32,6 +32,7 @@ const StyledDialog = styled(Dialog)`
   border: 1px solid rgba(33, 33, 33, 0.25);
   padding: 1em;
   max-height: calc(100vh - 56px);
+  overflow-y: auto;
 `;
 
 export const DialogCentreScreen = ({

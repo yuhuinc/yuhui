@@ -28,6 +28,7 @@ const StyledDialog = styled(RKDialog)`
   justify-content: center;
   align-items: center;
   z-index: 999;
+  overflow-y: auto;
   ${device.mobile`
     padding: 28px;
   `}
