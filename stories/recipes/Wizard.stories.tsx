@@ -83,18 +83,22 @@ export const FormWizard = () => {
           border: "1px solid teal"
         }}
       >
-        <Carousel pageIndex={pageIndex} {...rest}>
-          <Page1 forward={forward} setName={setName} />
-          <Page2
-            back={back}
-            goTo={goTo}
-            name={name}
-            interested={interested}
-            setInterested={setInterested}
-          />
-          <Page3 back={back} forward={forward} interested={interested} />
-          <Page4 goTo={goTo} interested={interested} />
-        </Carousel>
+        <Carousel
+          pageIndex={pageIndex}
+          pages={[
+            <Page1 forward={forward} setName={setName} />,
+            <Page2
+              back={back}
+              goTo={goTo}
+              name={name}
+              interested={interested}
+              setInterested={setInterested}
+            />,
+            <Page3 back={back} forward={forward} interested={interested} />,
+            <Page4 goTo={goTo} interested={interested} />
+          ]}
+          {...rest}
+        />
       </div>
     </ContentProvider>
   );
