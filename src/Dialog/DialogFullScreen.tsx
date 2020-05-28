@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import styled from "styled-components";
 import {
   Dialog as RKDialog,
@@ -76,9 +76,21 @@ export const DialogFullScreen = ({
   hide,
   hideOnEsc,
   hideOnClickOutside,
+  onEscButtonClick,
   ...rest
 }: DialogProps) => {
   const { lang, theme } = useContent();
+
+  const handleEscButtonClick = useCallback(
+    e => {
+      e.preventDefault();
+
+      if (!onEscButtonClick) return hide(2);
+      if (onEscButtonClick(e)) return hide(2);
+    },
+    [onEscButtonClick]
+  );
+
   return (
     <StyledDialog
       aria-label={label}
@@ -90,7 +102,7 @@ export const DialogFullScreen = ({
       {...rest}
     >
       {visible && <StyledChildrenContainer>{children}</StyledChildrenContainer>}
-      <StyledCloseContainer onClick={hide}>
+      <StyledCloseContainer onClick={handleEscButtonClick}>
         <MdClose
           size="24px"
           color={theme.colors?.primary?.dark || colors.BLUE}

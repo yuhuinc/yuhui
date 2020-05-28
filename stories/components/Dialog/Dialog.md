@@ -20,11 +20,14 @@ A centred white modal box surrounded by a light-grey coloured background.
 
 ### Props
 
-| name     | type      | default | description             |
-| -------- | --------- | ------- | ----------------------- |
-| label    | string    |         | Aria-label              |
-| children | Component |         | Placeholder for input   |
-| dialog   | useDialog |         | Hook from reakit/Dialog |
+This component uses Reakit at its base. `useDialog` returns a set of states that should be passed to `<DialogFullScreen />` as props. Read more about it at https://reakit.io/docs/dialog/#usedialogstate
+
+| name               | type      | default | description                                         |
+| ------------------ | --------- | ------- | --------------------------------------------------- |
+| label              | string    |         | Aria-label                                          |
+| children           | Component |         | Placeholder for input                               |
+| hideOnEsc          | boolean   | true    | Closes dialog on esc press if true                  |
+| hideOnClickOutside | boolean   | true    | Closes dialog on clicking outside of dialog if true |
 
 ### Example
 
@@ -51,11 +54,15 @@ A light-grey coloured background that takes up the full screen.
 
 ### Props
 
-| name     | type      | default | description             |
-| -------- | --------- | ------- | ----------------------- |
-| label    | string    |         | Aria-label              |
-| children | Component |         | Placeholder for input   |
-| dialog   | useDialog |         | Hook from reakit/Dialog |
+This component uses Reakit at its base. `useDialog` returns a set of states that should be passed to `<DialogFullScreen />` as props. Read more about it at https://reakit.io/docs/dialog/#usedialogstate
+
+| name               | type         | default | description                                                                                                     |
+| ------------------ | ------------ | ------- | --------------------------------------------------------------------------------------------------------------- |
+| label              | string       |         | Aria-label                                                                                                      |
+| children           | Component    |         | Placeholder for input                                                                                           |
+| hideOnEsc          | boolean      | true    | Closes dialog on esc press if true                                                                              |
+| hideOnClickOutside | boolean      | true    | Closes dialog on clicking outside of dialog if true                                                             |
+| onEscButtonClick   | e => boolean |         | Callback function that gets called on clicking the escape button. Return `false` to prevent dialog from closing |
 
 ### Example
 

@@ -95,4 +95,46 @@ describe("events", () => {
 
     expect(getByLabelText("dialog")).toBeVisible();
   });
+
+  test("when onEscButtonClick is given, it gets fired when close button is clicked", () => {
+    const handleClick = jest.fn(() => true);
+
+    const { getByLabelText, getByText } = renderWithContent({
+      contentNodes,
+      lang: "en"
+    })(
+      <DialogContainer
+        hideOnEsc={false}
+        visible={true}
+        onEscButtonClick={handleClick}
+      />
+    );
+    expect(getByLabelText("dialog")).toBeVisible();
+
+    fireEvent.click(getByText("esc"));
+
+    expect(handleClick.mock.calls.length).toBe(1);
+    expect(getByLabelText("dialog")).not.toBeVisible();
+  });
+
+  test("when onEscButtonClick returns false, it prevents dialog from closing", () => {
+    const handleClick = jest.fn(() => false);
+
+    const { getByLabelText, getByText } = renderWithContent({
+      contentNodes,
+      lang: "en"
+    })(
+      <DialogContainer
+        hideOnEsc={false}
+        visible={true}
+        onEscButtonClick={handleClick}
+      />
+    );
+    expect(getByLabelText("dialog")).toBeVisible();
+
+    fireEvent.click(getByText("esc"));
+
+    expect(handleClick.mock.calls.length).toBe(1);
+    expect(getByLabelText("dialog")).toBeVisible();
+  });
 });
