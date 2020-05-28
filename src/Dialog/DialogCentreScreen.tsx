@@ -56,7 +56,7 @@ export const DialogCentreScreen = ({
         hideOnClickOutside={hideOnClickOutside || false}
         {...rest}
       >
-        {children}
+        {visible && children}
       </StyledDialog>
     </StyledBackdrop>
   );

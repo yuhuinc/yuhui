@@ -5,6 +5,10 @@
 - [DialogCentreScreen](#DialogCentreScreen)
 - [DialogFullScreen](#DialogFullScreen)
 
+**Gotchas**:
+
+- `reakit/Dialog` which this component uses, use css to hide the dialog content (class `"hidden"`). We instead, do not render the dialog content at all if it's hidden. This prevent pesky bugs that happens when components in dialog content relies on data that is only available when the dialog is open.
+
 **How it is built**
 
 - Dialogs are a mainly just a wrapper which is passed a styled child component.

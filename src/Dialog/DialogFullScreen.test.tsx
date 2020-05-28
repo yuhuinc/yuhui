@@ -3,7 +3,7 @@ import faker from "faker";
 import "@testing-library/jest-dom/extend-expect";
 import { fireEvent } from "@testing-library/react";
 import { renderWithContent } from "../testUtils";
-import { useDialog, DialogCentreScreen, P } from "../";
+import { useDialog, DialogFullScreen, P } from "../";
 
 const DialogContainer = ({ visible = false, ...rest }) => {
   const dialog = useDialog({ visible });
@@ -12,10 +12,10 @@ const DialogContainer = ({ visible = false, ...rest }) => {
       <button data-testid="button" onClick={dialog.toggle}>
         toggle
       </button>
-      <DialogCentreScreen label="dialog" {...dialog} {...rest}>
+      <DialogFullScreen label="dialog" {...dialog} {...rest}>
         <P data-testid="p" contentKey="p" />
         <button data-testid="focus">does nothing</button>
-      </DialogCentreScreen>
+      </DialogFullScreen>
     </div>
   );
 };
