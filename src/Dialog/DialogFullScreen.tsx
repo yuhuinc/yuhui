@@ -74,6 +74,7 @@ export const DialogFullScreen = ({
   baseId,
   visible,
   hide,
+  hideOnEsc,
   hideOnClickOutside,
   ...rest
 }: DialogProps) => {
@@ -84,6 +85,7 @@ export const DialogFullScreen = ({
       baseId={baseId}
       visible={visible}
       hide={hide}
+      hideOnEsc={hideOnEsc || false}
       hideOnClickOutside={hideOnClickOutside || false}
       {...rest}
     >

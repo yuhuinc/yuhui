@@ -52,7 +52,12 @@ const Dialog = () => {
   return (
     <div>
       <ButtonPrimary contentKey="demo.Button" onClick={dialog.toggle} />
-      <DialogCentreScreen {...dialog} label="Hello">
+      <DialogCentreScreen
+        label="Hello"
+        hideOnEsc={true}
+        hideOnClickOutside={true}
+        {...dialog}
+      >
         <P contentKey="demo.P" />
       </DialogCentreScreen>
     </div>

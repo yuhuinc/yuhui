@@ -5,7 +5,8 @@ import styled from "styled-components";
 import { useContent, WithContentProps } from "../Content/Content";
 import { AiOutlineClose } from "react-icons/ai";
 import { colors } from "../shared/constants";
-const fileDropIcon = require("../static/file-drop.png");
+// const fileDropIcon = require("../static/file-drop.png");
+import fileDropIcon from "../static/file-drop.png";
 
 const StyledOuterContainer = styled.div``;
 
