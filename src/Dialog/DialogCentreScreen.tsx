@@ -41,6 +41,7 @@ export const DialogCentreScreen = ({
   baseId,
   visible,
   hide,
+  hideOnEsc,
   hideOnClickOutside,
   ...rest
 }: DialogProps) => {
@@ -51,10 +52,11 @@ export const DialogCentreScreen = ({
         aria-label={label}
         visible={visible}
         hide={hide}
-        hideOnClickOutside={hideOnClickOutside}
+        hideOnEsc={hideOnEsc || false}
+        hideOnClickOutside={hideOnClickOutside || false}
         {...rest}
       >
-        {children}
+        {visible && children}
       </StyledDialog>
     </StyledBackdrop>
   );
