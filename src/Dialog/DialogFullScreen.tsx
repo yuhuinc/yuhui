@@ -85,8 +85,8 @@ export const DialogFullScreen = ({
     e => {
       e.preventDefault();
 
-      if (!onEscButtonClick) return hide(2);
-      if (onEscButtonClick(e)) return hide(2);
+      if (!onEscButtonClick) return hide(e);
+      if (onEscButtonClick(e)) return hide(e);
     },
     [onEscButtonClick]
   );
