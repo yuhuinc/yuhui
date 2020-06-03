@@ -4,32 +4,77 @@
 
 Accessible React components
 
-- Force translations for copy
-- Follow web accessibility standards as much as possible
+- Support for translations is upfront
+- Follow web accessibility standards
 
 ## Getting started
 
 ### Using the package
 
-```bash
-$ npm install @yuhuinc/yuhui
+```shell
+$ npm install @yuhuinc/yuhui # or
 $ yarn add @yuhui/yuhui
 ```
 
 ### Developing
 
-```bash
+```shell
 $ yarn storybook
 ```
 
 ### Running tests
 
-```bash
-$ yarn test
+```shell
+$ yarn watch
 ```
 
-```bash
-$ yarn watch
+## Basics
+
+The component library relies on a component called `<ContentProvider />` to provide content (copy and styles) to its children components.
+
+### Example
+
+Create an object with `contentNodes` and `theme` as keys. `contentNodes` is an object with its key being the name of the "content piece" that can be referenced in other components. Its value is includes translated copies. The `theme` API is still quite unstable and can be updated with breaking changes often.
+
+```jsx
+const content = {
+  contentNodes: {
+    nodeName: {
+      copy: {
+        en: "an example",
+        fr: "un exemple"
+      }
+    }
+  },
+  theme: {
+    /* stuff */
+  }
+};
+```
+
+Pass the `content` object into the `ContentProvider` as a prop.
+
+```jsx
+import { ContentProvider } from "@yuhuinc/yuhui";
+
+const Example = ({ children }) => (
+  <ContentProvider content={content} lang="en">
+    {children}
+  </ContentProvider>
+);
+```
+
+Then you can reference the key name of the content node in components.
+
+```jsx
+import { P } from "@yuhuinc/yuhui";
+
+const App = () => (
+  <Example>
+    <P>You can still do this, but what's below instead:</P>
+    <P key="nodeName" />
+  </Example>
+);
 ```
 
 ## Resources
