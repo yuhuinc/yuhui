@@ -9,7 +9,7 @@ export default {
 export const Introduction = () => (
   <div>
     <h1>YuhUI</h1>
-    <a href="/?path=/info/welcome--introduction">
+    <a href="/yuhui/?path=/info/welcome--introduction">
       Click here or "Notes" on the top-left corner.
     </a>
   </div>
