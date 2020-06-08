@@ -26,6 +26,7 @@ This component uses Reakit at its base. `useDialog` returns a set of states that
 | ------------------ | --------- | ------- | --------------------------------------------------- |
 | label              | string    |         | Aria-label                                          |
 | children           | Component |         | Placeholder for input                               |
+| showEscButton      | boolen    | true    | Shows esc button that closes the dialog when true   |
 | hideOnEsc          | boolean   | true    | Closes dialog on esc press if true                  |
 | hideOnClickOutside | boolean   | true    | Closes dialog on clicking outside of dialog if true |
 
@@ -62,6 +63,7 @@ This component uses Reakit at its base. `useDialog` returns a set of states that
 | children           | Component    |         | Placeholder for input                                                                                           |
 | hideOnEsc          | boolean      | true    | Closes dialog on esc press if true                                                                              |
 | hideOnClickOutside | boolean      | true    | Closes dialog on clicking outside of dialog if true                                                             |
+| showEscButton      | boolen       | true    | Shows esc button that closes the dialog when true                                                               |
 | onEscButtonClick   | e => boolean |         | Callback function that gets called on clicking the escape button. Return `false` to prevent dialog from closing |
 
 ### Example
