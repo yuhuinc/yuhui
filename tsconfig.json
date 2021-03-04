@@ -23,6 +23,6 @@
     "outDir": "dist",
     "rootDirs": ["src", "stories"]
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "globals.d.ts"],
   "exclude": ["node_modules", "build", "dist", "scripts"]
 }
