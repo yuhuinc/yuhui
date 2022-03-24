@@ -1,6 +1,6 @@
 {
-  "name": "@yuhuinc/yuhui",
-  "version": "0.2.1",
+  "name": "@yuhu-inc/yuhui",
+  "version": "0.2.2",
   "main": "dist/index.js",
   "scripts": {
     "build": "rm -rf dist/ && tsc",
