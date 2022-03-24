@@ -12,8 +12,8 @@ Accessible React components
 ### Using the package
 
 ```shell
-$ npm install @yuhuinc/yuhui # or
-$ yarn add @yuhui/yuhui
+$ npm install @yuhu-inc/yuhui # or
+$ yarn add @yuhu-inc/yuhui
 ```
 
 ### Developing
@@ -26,6 +26,12 @@ $ yarn storybook
 
 ```shell
 $ yarn watch
+```
+
+### Publishing
+
+```
+$ yarn publish --access public
 ```
 
 ## Basics
