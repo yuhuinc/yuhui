@@ -28,6 +28,12 @@ $ yarn storybook
 $ yarn watch
 ```
 
+### Publishing
+
+```
+$ yarn publish --access public
+```
+
 ## Basics
 
 The component library relies on a component called `<ContentProvider />` to provide content (copy and styles) to its children components.
